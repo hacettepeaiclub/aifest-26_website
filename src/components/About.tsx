@@ -1,0 +1,156 @@
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
+
+/* ─── Animated counter hook ─── */
+function useCountUp(target: number, duration: number, shouldStart: boolean) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!shouldStart) return;
+    let startTime: number | null = null;
+    let frameId: number;
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * target));
+      if (progress < 1) {
+        frameId = requestAnimationFrame(animate);
+      }
+    };
+
+    frameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frameId);
+  }, [target, duration, shouldStart]);
+
+  return count;
+}
+
+/* ─── Counter Card ─── */
+function CounterCard({
+  stat,
+  isInView,
+  delay,
+}: {
+  stat: { value: string; numericValue?: number; suffix?: string; label: string; color: string };
+  isInView: boolean;
+  delay: number;
+}) {
+  const count = useCountUp(stat.numericValue ?? 0, 4000, isInView);
+
+  const displayValue = stat.numericValue !== undefined
+    ? `${count}${stat.suffix ?? ''}`
+    : stat.value;
+
+  return (
+    <motion.div
+      initial={{ y: 20, opacity: 0 }}
+      animate={isInView ? { y: 0, opacity: 1 } : {}}
+      transition={{ duration: 0.5, delay }}
+      className="group relative p-4 sm:p-6 rounded-3xl bg-white border border-accent/10 hover:border-accent/30 transition-all duration-300 hover:shadow-xl hover:shadow-accent/5 overflow-hidden text-center flex flex-col justify-center aspect-square w-full max-w-[160px] mx-auto"
+    >
+      <div className={`absolute top-0 left-0 w-full h-1.5 sm:h-2 bg-gradient-to-r ${stat.color}`} />
+      <p className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-text">{displayValue}</p>
+      <p className="text-xs sm:text-sm text-text-muted font-body mt-1 sm:mt-2">{stat.label}</p>
+    </motion.div>
+  );
+}
+
+/* ─── About Section ─── */
+export default function About() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  const stats = [
+    { value: '2018', numericValue: 2018, label: 'Kuruluş Yılı', color: 'from-cta to-cta/70' },
+    { value: '4', numericValue: 4, label: 'Başarılı Etkinlik', color: 'from-accent to-accent/70' },
+    { value: '500+', numericValue: 500, suffix: '+', label: 'Katılımcı', color: 'from-badge to-badge/70' },
+    { value: '50+', numericValue: 50, suffix: '+', label: 'Konuşmacı', color: 'from-deep to-deep/70' },
+  ];
+
+  return (
+    <section id="hakkinda" className="py-20 sm:py-28 px-[10px] sm:px-10 lg:px-20 xl:px-36 w-full relative flex flex-col items-center bg-gradient-to-b from-deep/10 to-deep/5">
+      {/* Background accent */}
+      <div className="absolute top-0 right-0 w-[300px] h-[300px] rounded-full bg-cta/5 blur-[80px]" />
+
+      <div ref={ref} className="w-full relative z-10 flex flex-col items-center">
+        {/* Section header */}
+        <motion.div
+          initial={{ y: 40, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="text-center mb-12 sm:mb-16 w-full"
+        >
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-text">
+            <br />AI Fest{' '}
+            <span className="bg-gradient-to-r from-accent to-cta bg-clip-text text-transparent">
+              Nedir?
+            </span>
+          </h2>
+        </motion.div>
+
+        {/* Content container */}
+        <div className="w-full flex flex-col items-center gap-12 max-w-3xl mx-auto mt-4">
+          {/* Main text */}
+          <motion.div
+            initial={{ y: 40, opacity: 0 }}
+            animate={isInView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-5 w-full text-left"
+          >
+            <p className="text-sm sm:text-base lg:text-lg text-text-muted leading-relaxed font-body">
+              <span className="text-accent font-semibold"><br />AI Fest</span>, Türkiye'nin en büyük
+              öğrenci odaklı yapay zeka etkinliklerinden biridir.
+              <br />Her yıl sektörün önde gelen
+              isimleri, araştırmacılar ve teknoloji liderlerini bir araya getirerek yapay zekanın
+              geleceğini şekillendiren ilham verici bir platform sunuyoruz.
+            </p>
+            <p className="text-sm sm:text-base lg:text-lg text-text-muted leading-relaxed font-body">
+              <br />Konferanslar, paneller, workshoplar ve networking alanlarıyla dolu bir gün sizi
+              bekliyor. İster öğrenci olun ister profesyonel; yapay zeka ekosisteminin nabzını
+              tutmak, yeni bağlantılar kurmak ve kariyerinize yön vermek için{' '}
+              <span className="text-cta font-semibold">AI Fest '26</span>'ya katılın!
+            </p>
+
+          </motion.div>
+
+          {/* Stats cards (2x2 grid) */}
+          <motion.div
+            initial={{ y: 40, opacity: 0 }}
+            animate={isInView ? { y: 0, opacity: 0.88 } : {}}
+            transition={{ duration: 0.9, delay: 0.7 }}
+            className="grid grid-cols-2 gap-4 sm:gap-6 w-full max-w-[400px] mx-auto mt-4"
+          >
+            {stats.map((stat, i) => (
+              <CounterCard
+                key={stat.label}
+                stat={stat}
+                isInView={isInView}
+                delay={0.5 + i * 0.1}
+              />
+            ))}
+          </motion.div>
+
+          {/* Bottom centered text */}
+          <motion.div
+            initial={{ y: 40, opacity: 0 }}
+            animate={isInView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="flex items-center justify-center gap-3 w-full mt-8"
+          >
+            <div style={{ marginTop: '-50px' }} className="h-px w-12 sm:w-24 bg-gradient-to-r from-transparent to-cta/50" />
+            <span className="text-xs sm:text-sm text-text-muted/60 font-body italic text-center whitespace-nowrap" style={{ marginTop: '-50px' }}>
+              2018'den bugüne, her yıl büyüyerek
+            </span>
+            <div style={{ marginTop: '-50px' }} className="h-px w-12 sm:w-24 bg-gradient-to-l from-transparent to-cta/50" />
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,161 @@
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+
+function LinkedInIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+}
+
+interface Speaker {
+  name: string;
+  title: string;
+  org: string;
+  color: string;
+  linkedin: string;
+}
+
+const row1Speakers: Speaker[] = [
+  { name: 'Prof. Dr. Ayşe Yılmaz', title: 'Yapay Zeka Araştırmacısı', org: 'ODTÜ', color: 'from-cta to-accent', linkedin: 'https://linkedin.com' },
+  { name: 'Dr. Emre Kaya', title: 'Makine Öğrenmesi Uzmanı', org: 'Google DeepMind', color: 'from-accent to-deep', linkedin: 'https://linkedin.com' },
+  { name: 'Zeynep Arslan', title: 'Veri Bilimi Lideri', org: 'Microsoft', color: 'from-badge to-accent', linkedin: 'https://linkedin.com' },
+  { name: 'Prof. Dr. Mehmet Öz', title: 'Doğal Dil İşleme', org: 'Hacettepe Üniversitesi', color: 'from-deep to-cta', linkedin: 'https://linkedin.com' },
+  { name: 'Selin Demir', title: 'AI Mühendisi', org: 'Meta AI', color: 'from-cta to-badge', linkedin: 'https://linkedin.com' },
+  { name: 'Dr. Burak Çelik', title: 'Robotik & Otomasyon', org: 'TUSAŞ', color: 'from-accent to-cta', linkedin: 'https://linkedin.com' },
+  { name: 'Elif Korkmaz', title: 'Bilgisayarlı Görü', org: 'ASELSAN', color: 'from-deep to-badge', linkedin: 'https://linkedin.com' },
+  { name: 'Prof. Dr. Hakan Tekin', title: 'Derin Öğrenme', org: 'İTÜ', color: 'from-cta to-deep', linkedin: 'https://linkedin.com' },
+  { name: 'Merve Şahin', title: 'NLP Araştırmacısı', org: 'Hugging Face', color: 'from-badge to-cta', linkedin: 'https://linkedin.com' },
+  { name: 'Dr. Can Özgür', title: 'Büyük Dil Modelleri', org: 'OpenAI', color: 'from-accent to-badge', linkedin: 'https://linkedin.com' },
+];
+
+const row2Speakers: Speaker[] = [
+  { name: 'Deniz Yıldırım', title: 'MLOps Uzmanı', org: 'Amazon AWS', color: 'from-deep to-accent', linkedin: 'https://linkedin.com' },
+  { name: 'Prof. Dr. Fatma Güney', title: 'Medikal Yapay Zeka', org: 'Koç Üniversitesi', color: 'from-cta to-accent', linkedin: 'https://linkedin.com' },
+  { name: 'Dr. Ahmet Yılmaz', title: 'AI Güvenliği & Etik', org: 'HAVELSAN', color: 'from-accent to-deep', linkedin: 'https://linkedin.com' },
+  { name: 'Yasemin Çevik', title: 'LLM Sistem Mimarisi', org: 'Trendyol Tech', color: 'from-badge to-cta', linkedin: 'https://linkedin.com' },
+  { name: 'Prof. Dr. Oğuz Ergin', title: 'Bilgisayar Mimarisi', org: 'TOBB ETÜ', color: 'from-cta to-badge', linkedin: 'https://linkedin.com' },
+  { name: 'Daron Yöndem', title: 'Bulut & AI Teknik Lider', org: 'Microsoft', color: 'from-deep to-cta', linkedin: 'https://linkedin.com' },
+  { name: 'Melike Palsü Kurt', title: 'Dijital Dönüşüm Uzmanı', org: 'Cumhurbaşkanlığı DDÖ', color: 'from-accent to-cta', linkedin: 'https://linkedin.com' },
+  { name: 'Burcu Öksüz', title: 'Yazılım Mimarısı', org: 'Microsoft', color: 'from-badge to-accent', linkedin: 'https://linkedin.com' },
+  { name: 'Cihan Altay', title: 'Veri Analitiği Yöneticisi', org: 'Türkiye İş Bankası', color: 'from-cta to-deep', linkedin: 'https://linkedin.com' },
+  { name: 'Güven Orkun Tanık', title: 'Yapay Zeka Teknik Lideri', org: 'TUSAŞ', color: 'from-deep to-badge', linkedin: 'https://linkedin.com' },
+];
+
+function SpeakerCard({ speaker }: { speaker: Speaker }) {
+  const initials = speaker.name
+    .split(' ')
+    .filter(part => !['Dr.', 'Prof.'].includes(part))
+    .map(n => n[0])
+    .slice(0, 2)
+    .join('');
+
+  return (
+    <div className="flex-shrink-0 w-[300px] h-[300px] group [perspective:1500px]">
+      <div className="relative w-full h-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d] [transform:translateZ(-150px)] group-hover:[transform:translateZ(-150px)_rotateX(90deg)]">
+
+        {/* FRONT FACE */}
+        <div className="absolute inset-0 bg-white border border-accent/15 rounded-3xl overflow-hidden shadow-xl flex flex-col items-center justify-center p-6 [backface-visibility:hidden] [transform:rotateX(0deg)_translateZ(150px)]">
+          {/* Top gradient bar */}
+          <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${speaker.color}`} />
+
+          {/* Round photo frame */}
+          <div className={`w-24 h-24 rounded-full bg-gradient-to-br ${speaker.color} flex items-center justify-center text-white font-heading font-bold text-3xl shadow-lg ring-4 ring-white`}>
+            {initials}
+          </div>
+
+          {/* Name & title */}
+          <h3 className="font-heading font-bold text-text text-lg text-center mt-4 leading-tight line-clamp-2 px-2">
+            {speaker.name}
+          </h3>
+          <p className="text-sm text-cta font-body font-semibold text-center mt-1.5 leading-tight line-clamp-1 px-2">
+            {speaker.title}
+          </p>
+          <p className="text-xs text-text-muted font-body text-center mt-1 line-clamp-1 px-2">
+            {speaker.org}
+          </p>
+        </div>
+
+        {/* BOTTOM FACE (Revealed on hover) */}
+        <div className="absolute inset-0 bg-gradient-to-br from-bg to-white border border-accent/15 rounded-3xl overflow-hidden shadow-xl flex flex-col items-center justify-center p-6 [backface-visibility:hidden] [transform:rotateX(-90deg)_translateZ(150px)]">
+          {/* Top gradient bar */}
+          <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${speaker.color}`} />
+
+          <h3 className="font-heading font-bold text-text text-xl text-center mb-6">
+            Bağlantı Kurun
+          </h3>
+          <p className="text-sm text-text-muted font-body text-center mb-6">
+            {speaker.name} ile profesyonel ağınızı genişletin.
+          </p>
+
+          <a
+            href={speaker.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-16 h-16 flex items-center justify-center rounded-full bg-[#0A66C2]/10 hover:bg-[#0A66C2]/25 text-[#0A66C2] transition-colors duration-200 hover:scale-110 transform"
+            aria-label={`${speaker.name} LinkedIn`}
+          >
+            <LinkedInIcon className="w-8 h-8" />
+          </a>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+export default function Speakers() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  // Combine speakers and duplicate for infinite marquee effect
+  const allSpeakers = [...row1Speakers, ...row2Speakers];
+  const marqueeSpeakers = [...allSpeakers, ...allSpeakers];
+
+  return (
+    <section id="konusmacilar" className="py-40 sm:py-64 relative overflow-hidden w-full bg-gradient-to-b from-deep/10 to-deep/15">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/60 to-transparent pointer-events-none" />
+
+      <div ref={ref} className="relative z-10 w-full">
+        {/* Section header */}
+        <motion.div
+          initial={{ y: 40, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 0.8 }}
+          className="flex flex-col items-center justify-center text-center mb-16 sm:mb-24 px-4 sm:px-8 lg:px-16 xl:px-32 w-full"
+        >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text w-full">
+            <br />Alanında Uzman{' '}
+            <span className="bg-gradient-to-r from-cta to-accent bg-clip-text text-transparent">
+              Konuşmacılar
+            </span>
+          </h2>
+          <p className="mt-4 italic text-accent/80 font-body max-w-xl w-full text-base text-center" style={{ marginBottom: '15px' }}>
+            Yapay zekâ dünyasının en ilham verici lider isimlerini ağırlıyoruz.
+          </p>
+        </motion.div>
+
+        {/* Marquee with stagger */}
+        <div className="relative w-full overflow-hidden py-10" style={{ marginBottom: '10px' }}>
+          {/* Fade edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-bg to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-bg to-transparent z-10 pointer-events-none" />
+
+          {/* Marquee track */}
+          <div
+            className="flex w-max animate-[marquee_250s_linear_infinite] gap-6 sm:gap-8 hover:[animation-play-state:paused] items-center"
+            style={{ marginBottom: "20px", marginTop: "10px" }}
+          >
+            {marqueeSpeakers.map((speaker, i) => (
+              <div key={`marquee-${speaker.name}-${i}`} className={`transition-transform ${i % 2 === 0 ? 'mb-[250px]' : 'mt-[250px]'}`}>
+                <SpeakerCard speaker={speaker} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
