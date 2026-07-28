@@ -138,7 +138,7 @@ export default function Hero() {
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-12 w-full sm:w-auto"
+          className="relative z-50 flex flex-col sm:flex-row items-center justify-center gap-12 w-full sm:w-auto"
           style={{ marginTop: '-78px' }}
         >
           <a
@@ -150,11 +150,11 @@ export default function Hero() {
 
           <a
             id="hero-register-btn"
-            href="#register"
+            href="#"
+            onClick={(e) => { e.preventDefault(); alert('Kayıtlar çok yakında açılacak!'); }}
             className="inline-flex items-center justify-center gap-1 px-10 py-5 bg-cta text-white font-body font-bold text-lg sm:text-xl rounded-2xl shadow-lg shadow-cta/40 hover:bg-cta-hover hover:shadow-2xl hover:shadow-cta/50 hover:-translate-y-1 active:translate-y-0 transition-all duration-300 whitespace-nowrap min-w-[200px]"
           >
             <span>Kayıt Ol</span>
-
           </a>
         </motion.div>
 
