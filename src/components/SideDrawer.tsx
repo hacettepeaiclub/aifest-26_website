@@ -55,7 +55,7 @@ export default function SideDrawer({ isOpen, onClose }: SideDrawerProps) {
                 <div className="flex items-center gap-0.5 text-left">
                   <div className="w-33 h-33 flex-shrink-0">
                     <img
-                      src="/aifest_hero_logo.png"
+                      src={`${import.meta.env.BASE_URL}aifest_hero_logo.png`}
                       alt="AI Fest"
                       className="w-full h-full object-contain" style={{ marginLeft: '-25px' }}
                     />

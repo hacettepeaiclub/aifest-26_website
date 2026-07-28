@@ -83,7 +83,7 @@ export default function Footer() {
             >
               <div className="flex items-center gap-3 mb-5">
                 <img
-                  src="/aifest_hero_logo.png"
+                  src={`${import.meta.env.BASE_URL}aifest_hero_logo.png`}
                   alt="AI Fest"
                   className="w-24 h-24 object-contain"
                   style={{ marginLeft: '-1px' }}

@@ -80,7 +80,7 @@ export default function Hero() {
           className="mb-8 sm:mb-10 flex justify-center"
         >
           <motion.img
-            src="/aifest_hero_logo.png"
+            src={`${import.meta.env.BASE_URL}aifest_hero_logo.png`}
             alt="AI Fest Hero Logo"
             className="w-48 h-48 sm:w-64 sm:h-64 lg:w-[320px] lg:h-[320px] object-contain drop-shadow-2xl rounded-2xl"
             animate={{ y: [0, 75, 0] }}

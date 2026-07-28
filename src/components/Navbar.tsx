@@ -69,7 +69,7 @@ export default function Navbar({ onMenuToggle, isMenuOpen }: NavbarProps) {
             <a href="#hero" className="flex items-center gap-1 sm:gap-2">
               <div className="w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center hover:scale-125 transition-transform">
                 <img
-                  src="/aiclub_logo.png"
+                  src={`${import.meta.env.BASE_URL}aiclub_logo.png`}
                   alt="Hacettepe Yapay Zeka Topluluğu"
                   className="w-full h-full object-contain drop-shadow-2xl"
                   style={{ transform: 'scale(1.2)' }}

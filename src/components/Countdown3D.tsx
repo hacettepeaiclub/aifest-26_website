@@ -29,7 +29,7 @@ function TimeBlock({ value, label, position }: { value: string, label: string, p
         {/* Number */}
         <Center position={[0, 0.15, 0.1]}>
           <Text3D
-            font="/helvetiker_regular.typeface.json"
+            font={`${import.meta.env.BASE_URL}helvetiker_regular.typeface.json`}
             size={0.75}
             height={0.15}
             curveSegments={12}
