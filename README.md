@@ -31,6 +31,19 @@ The application is built using a modern, component-driven React architecture. It
   - `Deep`: Dark background theme
   - `CTA`, `Accent`, `Badge`: Vibrant highlight colors used dynamically across different sections for visual hierarchy.
 
+## 🗺️ Page Layout Scheme
+
+The landing page follows a continuous, vertical-scroll narrative:
+1. **Hero:** 3D Countdown & Event intro
+2. **About:** High-level summary of the event
+3. **Vision 2026:** Interactive 3D flip-cards detailing strategic goals
+4. **Speakers:** Showcasing the event's speakers
+5. **Sponsors:** Logos and tiers of event sponsors
+6. **Stakeholders:** Partners and supporting organizations
+7. **Timeline:** 3D interactive flipbook for the event schedule
+8. **Location:** Venue details and map
+9. **Footer:** Contact and social links
+
 ## 📦 Getting Started
 
 1. **Install dependencies:**
