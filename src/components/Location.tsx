@@ -43,7 +43,7 @@ export default function Location() {
             <iframe
               title="Etkinlik Konumu"
               src={googleMapsEmbedUrl}
-              className="w-full h-[350px] sm:h-[450px]"
+              className="w-full h-[250px] sm:h-[450px]"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
@@ -56,8 +56,8 @@ export default function Location() {
             initial={{ y: 30, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="w-full p-6 sm:p-8 rounded-3xl bg-white border border-accent/10 hover:border-accent/25 transition-all duration-300 shadow-sm flex flex-col items-center text-center gap-1"
-            style={{ marginBottom: '-28px', marginTop: '-32px' }}
+            className="w-full p-5 sm:p-8 rounded-3xl bg-white border border-accent/10 hover:border-accent/25 transition-all duration-300 shadow-sm flex flex-col items-center text-center gap-1"
+            style={{ marginBottom: '-16px', marginTop: '-20px' }}
           >
             {/* Centered venue name & address */}
             <div className="flex flex-col items-center text-center max-w-2xl">

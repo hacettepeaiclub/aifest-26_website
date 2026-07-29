@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 function LinkedInIcon({ className }: { className?: string }) {
   return (
@@ -44,6 +44,7 @@ const row2Speakers: Speaker[] = [
 ];
 
 function SpeakerCard({ speaker }: { speaker: Speaker }) {
+  const [flipped, setFlipped] = useState(false);
   const initials = speaker.name
     .split(' ')
     .filter(part => !['Dr.', 'Prof.'].includes(part))
@@ -52,40 +53,43 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
     .join('');
 
   return (
-    <div className="flex-shrink-0 w-[300px] h-[300px] group [perspective:1500px]">
-      <div className="relative w-full h-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d] [transform:translateZ(-150px)] group-hover:[transform:translateZ(-150px)_rotateX(90deg)]">
+    <div
+      className="flex-shrink-0 w-[220px] h-[220px] sm:w-[300px] sm:h-[300px] [perspective:1500px]"
+      onClick={() => setFlipped(!flipped)}
+    >
+      <div className={`relative w-full h-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d] ${flipped ? '[transform:translateZ(-150px)_rotateX(90deg)]' : '[transform:translateZ(-150px)]'} sm:!transform-none sm:group-hover:[transform:translateZ(-150px)_rotateX(90deg)]`}>
 
         {/* FRONT FACE */}
-        <div className="absolute inset-0 bg-white border border-accent/15 rounded-3xl overflow-hidden shadow-xl flex flex-col items-center justify-center p-6 [backface-visibility:hidden] [transform:rotateX(0deg)_translateZ(150px)]">
+        <div className="absolute inset-0 bg-white border border-accent/15 rounded-3xl overflow-hidden shadow-xl flex flex-col items-center justify-center p-4 sm:p-6 [backface-visibility:hidden] [transform:rotateX(0deg)_translateZ(150px)]">
           {/* Top gradient bar */}
           <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${speaker.color}`} />
 
           {/* Round photo frame */}
-          <div className={`w-24 h-24 rounded-full bg-gradient-to-br ${speaker.color} flex items-center justify-center text-white font-heading font-bold text-3xl shadow-lg ring-4 ring-white`}>
+          <div className={`w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br ${speaker.color} flex items-center justify-center text-white font-heading font-bold text-xl sm:text-3xl shadow-lg ring-4 ring-white`}>
             {initials}
           </div>
 
           {/* Name & title */}
-          <h3 className="font-heading font-bold text-text text-lg text-center mt-4 leading-tight line-clamp-2 px-2">
+          <h3 className="font-heading font-bold text-text text-sm sm:text-lg text-center mt-3 sm:mt-4 leading-tight line-clamp-2 px-2">
             {speaker.name}
           </h3>
-          <p className="text-sm text-cta font-body font-semibold text-center mt-1.5 leading-tight line-clamp-1 px-2">
+          <p className="text-xs sm:text-sm text-cta font-body font-semibold text-center mt-1 sm:mt-1.5 leading-tight line-clamp-1 px-2">
             {speaker.title}
           </p>
-          <p className="text-xs text-text-muted font-body text-center mt-1 line-clamp-1 px-2">
+          <p className="text-[10px] sm:text-xs text-text-muted font-body text-center mt-0.5 sm:mt-1 line-clamp-1 px-2">
             {speaker.org}
           </p>
         </div>
 
-        {/* BOTTOM FACE (Revealed on hover) */}
-        <div className="absolute inset-0 bg-gradient-to-br from-bg to-white border border-accent/15 rounded-3xl overflow-hidden shadow-xl flex flex-col items-center justify-center p-6 [backface-visibility:hidden] [transform:rotateX(-90deg)_translateZ(150px)]">
+        {/* BOTTOM FACE (Revealed on hover/tap) */}
+        <div className="absolute inset-0 bg-gradient-to-br from-bg to-white border border-accent/15 rounded-3xl overflow-hidden shadow-xl flex flex-col items-center justify-center p-4 sm:p-6 [backface-visibility:hidden] [transform:rotateX(-90deg)_translateZ(150px)]">
           {/* Top gradient bar */}
           <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${speaker.color}`} />
 
-          <h3 className="font-heading font-bold text-text text-xl text-center mb-6">
+          <h3 className="font-heading font-bold text-text text-base sm:text-xl text-center mb-4 sm:mb-6">
             Bağlantı Kurun
           </h3>
-          <p className="text-sm text-text-muted font-body text-center mb-6">
+          <p className="text-xs sm:text-sm text-text-muted font-body text-center mb-4 sm:mb-6">
             {speaker.name} ile profesyonel ağınızı genişletin.
           </p>
 
@@ -93,10 +97,11 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
             href={speaker.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-16 h-16 flex items-center justify-center rounded-full bg-[#0A66C2]/10 hover:bg-[#0A66C2]/25 text-[#0A66C2] transition-colors duration-200 hover:scale-110 transform"
+            className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center rounded-full bg-[#0A66C2]/10 hover:bg-[#0A66C2]/25 text-[#0A66C2] transition-colors duration-200 hover:scale-110 transform"
             aria-label={`${speaker.name} LinkedIn`}
+            onClick={(e) => e.stopPropagation()}
           >
-            <LinkedInIcon className="w-8 h-8" />
+            <LinkedInIcon className="w-6 h-6 sm:w-8 sm:h-8" />
           </a>
         </div>
 
@@ -114,7 +119,7 @@ export default function Speakers() {
   const marqueeSpeakers = [...allSpeakers, ...allSpeakers];
 
   return (
-    <section id="konusmacilar" className="py-40 sm:py-64 relative overflow-hidden w-full bg-gradient-to-b from-deep/10 to-deep/15">
+    <section id="konusmacilar" className="py-16 sm:py-64 relative overflow-hidden w-full bg-gradient-to-b from-deep/10 to-deep/15">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/60 to-transparent pointer-events-none" />
 
@@ -124,7 +129,7 @@ export default function Speakers() {
           initial={{ y: 40, opacity: 0 }}
           animate={isInView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 0.8 }}
-          className="flex flex-col items-center justify-center text-center mb-16 sm:mb-24 px-4 sm:px-8 lg:px-16 xl:px-32 w-full"
+          className="flex flex-col items-center justify-center text-center mb-10 sm:mb-24 px-4 sm:px-8 lg:px-16 xl:px-32 w-full"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text w-full">
             <br />Alanında Uzman{' '}
@@ -138,18 +143,18 @@ export default function Speakers() {
         </motion.div>
 
         {/* Marquee with stagger */}
-        <div className="relative w-full overflow-hidden py-10" style={{ marginBottom: '10px' }}>
+        <div className="relative w-full overflow-hidden py-4 sm:py-10" style={{ marginBottom: '10px' }}>
           {/* Fade edges */}
           <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-bg to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-bg to-transparent z-10 pointer-events-none" />
 
           {/* Marquee track */}
           <div
-            className="flex w-max animate-[marquee_250s_linear_infinite] gap-6 sm:gap-8 hover:[animation-play-state:paused] items-center"
+            className="flex w-max animate-[marquee_250s_linear_infinite] gap-4 sm:gap-8 hover:[animation-play-state:paused] items-center"
             style={{ marginBottom: "20px", marginTop: "10px" }}
           >
             {marqueeSpeakers.map((speaker, i) => (
-              <div key={`marquee-${speaker.name}-${i}`} className={`transition-transform ${i % 2 === 0 ? 'mb-[250px]' : 'mt-[250px]'}`}>
+              <div key={`marquee-${speaker.name}-${i}`} className={`group transition-transform ${i % 2 === 0 ? 'mb-[120px] sm:mb-[250px]' : 'mt-[120px] sm:mt-[250px]'}`}>
                 <SpeakerCard speaker={speaker} />
               </div>
             ))}

@@ -97,7 +97,43 @@ const Page = forwardRef<HTMLDivElement, { event: typeof timelineEvents[0]; numbe
 Page.displayName = 'Page';
 
 
-/* ─── E-Book FlipBook Component ─── */
+/* ─── Mobile Timeline Card ─── */
+function MobileTimelineCard({ event, index }: { event: typeof timelineEvents[0]; index: number }) {
+  return (
+    <motion.div
+      initial={{ y: 30, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="relative w-full rounded-2xl bg-white border border-gray-200 shadow-lg overflow-hidden"
+    >
+      {/* Top color bar */}
+      <div className="h-2 w-full" style={{ backgroundColor: event.colorHex }} />
+      
+      <div className="p-5">
+        {/* Year */}
+        <div className="text-5xl font-black tracking-tighter mb-3" style={{ color: event.colorHex }}>
+          {event.year}
+        </div>
+        
+        {/* Description */}
+        <p className="text-sm text-text-muted font-body leading-relaxed mb-4">
+          {event.description}
+        </p>
+        
+        {/* Highlight badge */}
+        <div
+          className="inline-flex text-xs font-bold py-1.5 px-4 rounded-xl bg-white border border-gray-200 shadow-sm"
+          style={{ color: event.colorHex }}
+        >
+          ✨ {event.highlight}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ─── E-Book FlipBook Component (Desktop Only) ─── */
 function EBookFlip() {
   const flipBook = useRef<any>(null);
   const [currentPage, setCurrentPage] = useState(0);
@@ -202,12 +238,20 @@ function EBookFlip() {
 export default function Timeline() {
   const sectionRef = useRef<HTMLElement>(null!);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <section
       ref={sectionRef}
       id="tarihce"
-      className="relative w-full py-20 sm:py-28 overflow-hidden bg-gradient-to-b from-deep/30 to-deep/40"
+      className="relative w-full py-16 sm:py-28 overflow-hidden bg-gradient-to-b from-deep/30 to-deep/40"
     >
       {/* Background glow blobs */}
       <div className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full bg-cta/10 blur-[150px]" />
@@ -218,7 +262,7 @@ export default function Timeline() {
         initial={{ y: 40, opacity: 0 }}
         animate={isInView ? { y: 0, opacity: 1 } : {}}
         transition={{ duration: 0.6 }}
-        className="flex flex-col items-center justify-center text-center mb-16 sm:mb-24 w-full px-4 relative z-20"
+        className="flex flex-col items-center justify-center text-center mb-10 sm:mb-24 w-full px-4 relative z-20"
       >
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-text mb-3">
           AI Fest{' '}
@@ -231,9 +275,17 @@ export default function Timeline() {
         </p>
       </motion.div>
 
-      {/* E-Book FlipBook UI */}
+      {/* Content: Mobile cards or Desktop flipbook */}
       <div className="relative w-full z-10 px-4 flex justify-center">
-        <EBookFlip />
+        {isMobile ? (
+          <div className="w-full max-w-md flex flex-col gap-4">
+            {timelineEvents.map((event, i) => (
+              <MobileTimelineCard key={event.year} event={event} index={i} />
+            ))}
+          </div>
+        ) : (
+          <EBookFlip />
+        )}
       </div>
     </section>
   );

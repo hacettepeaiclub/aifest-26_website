@@ -72,7 +72,7 @@ export default function Footer() {
 
       <div ref={ref} className="relative z-10">
         {/* Main footer content */}
-        <div className="w-full pl-4 sm:pl-8 lg:pl-16 xl:pl-32 pr-[9px] py-16 sm:py-20">
+        <div className="w-full px-4 sm:pl-8 lg:pl-16 xl:pl-32 sm:pr-[9px] py-12 sm:py-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16">
             {/* Brand */}
             <motion.div
@@ -81,7 +81,7 @@ export default function Footer() {
               transition={{ duration: 0.6 }}
               className="md:col-span-1"
             >
-              <div className="flex items-center gap-3 mb-5">
+              <div className="flex items-center gap-3 mb-5 justify-center sm:justify-start">
                 <img
                   src={`${import.meta.env.BASE_URL}aifest_hero_logo.png`}
                   alt="AI Fest"
@@ -93,7 +93,7 @@ export default function Footer() {
                   <p className="text-xs text-white/50 font-body" style={{ marginLeft: '-25px', marginTop: '-2px' }}>Hacettepe Üniversitesi <br />Yapay Zeka Topluluğu</p>
                 </div>
               </div>
-              <p className="text-sm text-white/60 font-body leading-relaxed max-w-xs pl-10" style={{ marginLeft: '25px', marginBottom: '5px' }}>
+              <p className="text-sm text-white/60 font-body leading-relaxed max-w-xs text-center sm:text-left sm:pl-10" style={{ marginBottom: '5px' }}>
                 2018'den bugüne yapay zekâ dünyasına adım atmak isteyen herkesi bir araya getiriyoruz.
               </p>
             </motion.div>
@@ -128,7 +128,7 @@ export default function Footer() {
               initial={{ y: 30, opacity: 0 }}
               animate={isInView ? { y: 0, opacity: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="md:justify-self-end mr-[9px]"
+              className="md:justify-self-end mr-0 sm:mr-[9px] text-center sm:text-left"
             >
               <h4 className="font-heading font-semibold text-white text-sm uppercase tracking-wider mb-5" style={{ marginRight: '5px', marginTop: '17px' }}>
                 Bize Ulaşın
@@ -155,7 +155,7 @@ export default function Footer() {
               </div>
 
               {/* Social icons */}
-              <div className="flex items-center gap-2.5" style={{ marginTop: '3px' }}>
+              <div className="flex items-center gap-2.5 justify-center sm:justify-start" style={{ marginTop: '3px' }}>
                 {socialLinks.map(social => (
                   <a
                     key={social.label}

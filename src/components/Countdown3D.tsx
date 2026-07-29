@@ -116,7 +116,7 @@ export default function Countdown3D() {
   ];
 
   return (
-    <div className="w-full h-[200px] sm:h-[250px] md:h-[300px] flex items-center justify-center my-6 sm:my-8 relative z-30">
+    <div className="w-full h-[180px] sm:h-[250px] md:h-[300px] flex items-center justify-center my-4 sm:my-8 relative z-30">
       <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
         <ambientLight intensity={0.6} />
         <directionalLight position={[10, 10, 5]} intensity={1.5} castShadow />

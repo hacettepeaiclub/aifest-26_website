@@ -50,11 +50,11 @@ const medyaSponsors: Sponsor[] = [
 
 function SponsorPill({ sponsor }: { sponsor: Sponsor }) {
   return (
-    <div className="flex-shrink-0 flex flex-col items-center group w-[160px] sm:w-[180px]">
-      <div className={`w-40 h-40 rounded-3xl bg-gradient-to-br ${sponsor.color} flex items-center justify-center text-white font-heading font-bold text-5xl shadow-sm border border-accent/15 hover:shadow-md hover:shadow-accent/5 hover:-translate-y-1 transition-all duration-300`}>
+    <div className="flex-shrink-0 flex flex-col items-center group w-[130px] sm:w-[180px]">
+      <div className={`w-28 h-28 sm:w-40 sm:h-40 rounded-3xl bg-gradient-to-br ${sponsor.color} flex items-center justify-center text-white font-heading font-bold text-3xl sm:text-5xl shadow-sm border border-accent/15 hover:shadow-md hover:shadow-accent/5 hover:-translate-y-1 transition-all duration-300`}>
         {sponsor.name.charAt(0)}
       </div>
-      <div className="flex flex-col items-center gap-2 mt-4">
+      <div className="flex flex-col items-center gap-2 mt-3 sm:mt-4">
         <span className="font-body font-semibold text-xs sm:text-sm text-text text-center w-full truncate px-2">{sponsor.name}</span>
         <a href={sponsor.link || "#"} target="_blank" rel="noopener noreferrer" className="text-[10px] sm:text-xs px-4 py-1.5 rounded-full bg-bg text-text-muted border border-accent/20 hover:bg-cta hover:text-white transition-colors">
           Siteye Git

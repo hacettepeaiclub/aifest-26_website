@@ -143,10 +143,10 @@ export default function SideDrawer({ isOpen, onClose }: SideDrawerProps) {
             </div>
 
             {/* Bottom CTA */}
-            <div className="px-6" style={{ marginTop: '557px' }}>
+            <div className="px-6 mt-auto pb-6">
               <a
-                href="#register"
-                onClick={onClose}
+                href="#"
+                onClick={(e) => { e.preventDefault(); alert('Kayıtlar yakında başlayacak. Takipte kal!'); onClose(); }}
                 className="flex items-center justify-center gap-2 w-full px-6 py-3.5 bg-cta text-white font-body font-semibold text-base rounded-xl hover:bg-cta-hover transition-all duration-300 shadow-md shadow-cta/25 hover:shadow-lg hover:shadow-cta/35 active:scale-98"
               >
                 <span>Kayıt Ol</span>

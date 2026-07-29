@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Users, Lightbulb, Globe } from 'lucide-react';
 
 const goals = [
@@ -44,6 +44,95 @@ const goals = [
   },
 ];
 
+function GoalCard({ goal, index, isInView }: { goal: typeof goals[0]; index: number; isInView: boolean }) {
+  const [flipped, setFlipped] = useState(false);
+
+  return (
+    <motion.div
+      key={goal.title}
+      initial={{ y: 40, opacity: 0 }}
+      animate={isInView ? { y: 0, opacity: 1 } : {}}
+      transition={{ duration: 0.6, delay: 0.2 + index * 0.15 }}
+      className="group relative w-full h-full cursor-pointer"
+      style={{ perspective: '1000px', margin: '0 5px' }}
+      onClick={() => setFlipped(!flipped)}
+    >
+      <div
+        className={`relative w-full h-full transition-transform duration-700 ${flipped ? '[transform:rotateX(180deg)]' : ''} md:!transform-none md:group-hover:[transform:rotateX(180deg)]`}
+        style={{ transformStyle: 'preserve-3d' }}
+      >
+        {/* INVISIBLE SPACER (Forces container height for absolute children) */}
+        <div className="invisible p-6 sm:p-10 pointer-events-none flex flex-col items-center justify-center">
+          <div className="flex flex-col items-start text-left">
+            <div className="w-14 h-14 mb-6" />
+            <h3 className="text-xl mb-2">{goal.title}</h3>
+            <p className="text-lg">{goal.subtitle}</p>
+            <p className="text-sm sm:text-base mb-4 leading-relaxed">{goal.description}</p>
+            <div className="flex flex-wrap gap-2 mt-[35px]">
+              {goal.tags.map(tag => (
+                <span key={tag} className="px-4 py-1.5 rounded-full border border-transparent text-xs sm:text-sm font-medium">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* FRONT FACE */}
+        <div
+          className={`absolute inset-0 p-6 sm:p-10 rounded-3xl bg-gradient-to-br from-white/60 ${goal.bgColor.replace('95', '40')} border ${goal.borderColor} overflow-hidden flex flex-col items-center justify-center shadow-lg backdrop-blur-2xl`}
+          style={{ backfaceVisibility: 'hidden' }}
+        >
+          <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${goal.color}`} />
+
+          {/* Inner Content Wrapper */}
+          <div className="flex flex-col items-start text-left w-full max-w-sm">
+            <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${goal.color} text-white mb-6 shadow-md`} style={{ marginBottom: '10px' }}>
+              <goal.icon className="w-7 h-7" />
+            </div>
+
+            <h3 className="font-heading font-semibold text-text text-xl mb-2">{goal.title}</h3>
+            <p className="text-lg text-cta font-body font-medium" style={{ marginBottom: '10px' }}>
+              {goal.subtitle}
+            </p>
+
+            <div className="flex items-center flex-wrap gap-2 mt-[35px]">
+              {goal.tags.map(tag => (
+                <span
+                  key={tag}
+                  className={`px-4 py-1.5 rounded-full ${goal.tagBgColor} backdrop-blur-md border border-white/60 ${goal.textColor} font-semibold text-xs sm:text-sm shadow-sm transition-all duration-300 hover:bg-white/80 hover:text-text hover:-translate-y-0.5`}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            {/* Mobile hint */}
+            <p className="text-xs text-text-muted/60 mt-4 md:hidden">Detaylar için dokun ↻</p>
+          </div>
+        </div>
+
+        {/* BACK FACE */}
+        <div
+          className={`absolute inset-0 p-6 sm:p-10 rounded-3xl bg-gradient-to-br from-white/60 ${goal.bgColor.replace('95', '40')} border ${goal.borderColor} overflow-hidden flex flex-col items-center justify-center shadow-lg backdrop-blur-2xl`}
+          style={{ backfaceVisibility: 'hidden', transform: 'rotateX(180deg)' }}
+        >
+          <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${goal.color}`} />
+
+          {/* Inner Content Wrapper */}
+          <div className="flex flex-col items-start text-left w-full max-w-sm">
+            <p className="text-sm sm:text-base text-text-muted font-body leading-relaxed">
+              {goal.description}
+            </p>
+            {/* Mobile hint */}
+            <p className="text-xs text-text-muted/60 mt-4 md:hidden">Geri dönmek için dokun ↻</p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Vision2026() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
@@ -77,83 +166,7 @@ export default function Vision2026() {
         {/* Goals grid */}
         <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-12">
           {goals.map((goal, i) => (
-            <motion.div
-              key={goal.title}
-              initial={{ y: 40, opacity: 0 }}
-              animate={isInView ? { y: 0, opacity: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 + i * 0.15 }}
-              className="group relative w-full h-full cursor-pointer"
-              style={{ perspective: '1000px', margin: '0 5px' }}
-            >
-              <div
-                className="relative w-full h-full transition-transform duration-700 group-hover:[transform:rotateX(180deg)]"
-                style={{ transformStyle: 'preserve-3d' }}
-              >
-                {/* INVISIBLE SPACER (Forces container height for absolute children) */}
-                <div className="invisible p-6 sm:p-10 pointer-events-none flex flex-col items-center justify-center">
-                  <div className="flex flex-col items-start text-left">
-                    <div className="w-14 h-14 mb-6" />
-                    <h3 className="text-xl mb-2">{goal.title}</h3>
-                    <p className="text-lg">{goal.subtitle}</p>
-                    <p className="text-sm sm:text-base mb-4 leading-relaxed">{goal.description}</p>
-                    <div className="flex flex-wrap gap-2 mt-[35px]">
-                      {goal.tags.map(tag => (
-                        <span key={tag} className="px-4 py-1.5 rounded-full border border-transparent text-xs sm:text-sm font-medium">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* FRONT FACE */}
-                <div
-                  className={`absolute inset-0 p-6 sm:p-10 rounded-3xl bg-gradient-to-br from-white/60 ${goal.bgColor.replace('95', '40')} border ${goal.borderColor} overflow-hidden flex flex-col items-center justify-center shadow-lg backdrop-blur-2xl`}
-                  style={{ backfaceVisibility: 'hidden' }}
-                >
-                  <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${goal.color}`} />
-
-                  {/* Inner Content Wrapper */}
-                  <div className="flex flex-col items-start text-left w-full max-w-sm">
-                    <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${goal.color} text-white mb-6 shadow-md`} style={{ marginBottom: '10px' }}>
-                      <goal.icon className="w-7 h-7" />
-                    </div>
-
-                    <h3 className="font-heading font-semibold text-text text-xl mb-2">{goal.title}</h3>
-                    <p className="text-lg text-cta font-body font-medium" style={{ marginBottom: '10px' }}>
-                      {goal.subtitle}
-                    </p>
-
-                    <div className="flex items-center flex-wrap gap-2 mt-[35px]">
-                      {goal.tags.map(tag => (
-                        <span
-                          key={tag}
-                          className={`px-4 py-1.5 rounded-full ${goal.tagBgColor} backdrop-blur-md border border-white/60 ${goal.textColor} font-semibold text-xs sm:text-sm shadow-sm transition-all duration-300 hover:bg-white/80 hover:text-text hover:-translate-y-0.5`}
-
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* BACK FACE */}
-                <div
-                  className={`absolute inset-0 p-6 sm:p-10 rounded-3xl bg-gradient-to-br from-white/60 ${goal.bgColor.replace('95', '40')} border ${goal.borderColor} overflow-hidden flex flex-col items-center justify-center shadow-lg backdrop-blur-2xl`}
-                  style={{ backfaceVisibility: 'hidden', transform: 'rotateX(180deg)' }}
-                >
-                  <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${goal.color}`} />
-
-                  {/* Inner Content Wrapper */}
-                  <div className="flex flex-col items-start text-left w-full max-w-sm">
-                    <p className="text-sm sm:text-base text-text-muted font-body leading-relaxed">
-                      {goal.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+            <GoalCard key={goal.title} goal={goal} index={i} isInView={isInView} />
           ))}
         </div>
       </div>
