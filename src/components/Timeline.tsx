@@ -64,7 +64,7 @@ const Page = forwardRef<HTMLDivElement, { event: typeof timelineEvents[0]; numbe
           <div className="relative h-14 sm:h-16 w-full shrink-0" />
 
           {/* Page Content (Opaque Paper) */}
-          <div className="p-8 flex-1 flex flex-row items-center justify-center gap-12 bg-white rounded-b-2xl"
+          <div className="p-8 flex-1 flex flex-row items-center justify-center gap-12 bg-[#f3f4f6]/45 backdrop-blur-3xl rounded-b-2xl"
             style={{ backgroundImage: 'radial-gradient(circle at center, #ffffff 0%, transparent 100%)' }}
           >
             {/* Left Side: Year */}
@@ -105,10 +105,8 @@ function MobileTimelineCard({ event, index }: { event: typeof timelineEvents[0];
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="relative w-full rounded-2xl bg-white border border-gray-200 shadow-lg overflow-hidden"
+      className="relative w-full rounded-2xl bg-[#f3f4f6]/45 backdrop-blur-3xl border border-white/60 shadow-lg overflow-hidden"
     >
-      {/* Top color bar */}
-      <div className="h-2 w-full" style={{ backgroundColor: event.colorHex }} />
       
       <div className="p-5">
         {/* Year */}

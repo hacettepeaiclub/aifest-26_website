@@ -56,7 +56,7 @@ export default function Location() {
             initial={{ y: 30, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="w-full p-5 sm:p-8 rounded-3xl bg-white border border-accent/10 hover:border-accent/25 transition-all duration-300 shadow-sm flex flex-col items-center text-center gap-1"
+            className="w-full p-5 sm:p-8 rounded-3xl bg-[#f3f4f6]/45 backdrop-blur-3xl border border-accent/10 hover:border-accent/25 transition-all duration-300 shadow-sm flex flex-col items-center text-center gap-1"
             style={{ marginBottom: '-16px', marginTop: '-20px' }}
           >
             {/* Centered venue name & address */}

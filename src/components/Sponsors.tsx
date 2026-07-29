@@ -56,8 +56,8 @@ function SponsorPill({ sponsor }: { sponsor: Sponsor }) {
       </div>
       <div className="flex flex-col items-center gap-2 mt-3 sm:mt-4">
         <span className="font-body font-semibold text-xs sm:text-sm text-text text-center w-full truncate px-2">{sponsor.name}</span>
-        <a href={sponsor.link || "#"} target="_blank" rel="noopener noreferrer" className="text-[10px] sm:text-xs px-4 py-1.5 rounded-full bg-bg text-text-muted border border-accent/20 hover:bg-cta hover:text-white transition-colors">
-          Siteye Git
+        <a href={sponsor.link || "#"} target="_blank" rel="noopener noreferrer" className="text-[10px] sm:text-xs px-4 py-1.5 rounded-md  text-text-muted  hover:bg-slate-400 hover:text-white transition-colors">
+          🔗
         </a>
       </div>
     </div>

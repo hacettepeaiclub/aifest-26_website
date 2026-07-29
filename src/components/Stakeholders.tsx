@@ -1,8 +1,22 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
+/* Custom social SVG icon (Lucide doesn't include brand icons) */
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><circle cx="12" cy="12" r="5" /><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 const partners = [
-  { name: 'IEEE Hacettepe', color: 'from-blue-400 to-blue-600' },
+  {
+    name: 'Atılım Üniversitesi\nYapay Zeka Topluluğu',
+    color: 'from-blue-400 to-blue-600',
+    logo: 'atilim_logo.png',
+    instagram: 'https://www.instagram.com/atilimai'
+  },
   { name: 'Google DSC Hacettepe', color: 'from-red-400 to-yellow-500' },
   { name: 'ACM Hacettepe', color: 'from-indigo-400 to-purple-500' },
   { name: 'Yazılım Topluluğu', color: 'from-green-400 to-emerald-500' },
@@ -49,14 +63,41 @@ export default function Stakeholders() {
               transition={{ duration: 0.5, delay: 0.15 + i * 0.08 }}
               className="group"
             >
-              <div className="relative p-6 sm:p-8 rounded-3xl bg-white border border-accent/10 hover:border-accent/30 transition-all duration-300 hover:shadow-xl hover:shadow-accent/5 hover:-translate-y-1 text-center overflow-hidden h-full flex flex-col items-center justify-center">
-                {/* Top accent */}
-                <div className={`absolute top-0 left-0 right-0 h-1 sm:h-1.5 bg-gradient-to-r ${partner.color} opacity-50 group-hover:opacity-100 transition-opacity`} />
+              <div className="relative px-4 pb-6 pt-10 sm:px-6 sm:pb-8 sm:pt-12 rounded-3xl bg-[#f3f4f6]/45 backdrop-blur-3xl border border-white/60 hover:bg-white/60 hover:border-white/80 transition-all duration-300 hover:shadow-xl hover:shadow-accent/5 hover:-translate-y-1 text-center overflow-hidden h-full flex flex-col items-center justify-center">
 
-                <div className={`inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br ${partner.color} text-white font-heading font-bold text-xl mb-4 shadow-md group-hover:scale-110 transition-transform duration-300`}>
-                  {partner.name.charAt(0)}
-                </div>
-                <p className="font-body font-medium text-base sm:text-lg text-text leading-tight">{partner.name}</p>
+                {partner.logo ? (
+                  <img
+                    src={`${import.meta.env.BASE_URL}${partner.logo}`}
+                    alt={partner.name}
+                    className="w-16 h-16 sm:w-20 sm:h-20 object-contain mb-4 group-hover:scale-110 transition-transform duration-300"
+                    style={{ marginTop: '10px', marginBottom: '3px' }}
+                  />
+                ) : (
+                  <div className={`inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br ${partner.color} text-white font-heading font-bold text-xl mb-4 shadow-md group-hover:scale-110 transition-transform duration-300`}>
+                    {partner.name.charAt(0)}
+                  </div>
+                )}
+
+                <p className="font-body font-medium text-base sm:text-lg text-text leading-tight">
+                  {partner.name.split('\n').map((line, idx, arr) => (
+                    <span key={idx}>
+                      {line}
+                      {idx !== arr.length - 1 && <br />}
+                    </span>
+                  ))}
+                </p>
+
+                {partner.instagram && (
+                  <a
+                    href={partner.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 text-black hover:text-cta transition-colors duration-300"
+                    aria-label="Instagram"
+                  >
+                    <InstagramIcon className="w-5 h-5" />
+                  </a>
+                )}
               </div>
             </motion.div>
           ))}

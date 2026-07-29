@@ -60,9 +60,7 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
       <div className={`relative w-full h-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d] ${flipped ? '[transform:translateZ(-150px)_rotateX(90deg)]' : '[transform:translateZ(-150px)]'} group-hover:[transform:translateZ(-150px)_rotateX(90deg)]`}>
 
         {/* FRONT FACE */}
-        <div className="absolute inset-0 bg-white border border-accent/15 rounded-3xl overflow-hidden shadow-xl flex flex-col items-center justify-center p-4 sm:p-6 [backface-visibility:hidden] [transform:rotateX(0deg)_translateZ(150px)]">
-          {/* Top gradient bar */}
-          <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${speaker.color}`} />
+        <div className="absolute inset-0 bg-[#f3f4f6]/45 backdrop-blur-3xl border border-white/60 rounded-3xl overflow-hidden shadow-xl flex flex-col items-center justify-center p-4 sm:p-6 [backface-visibility:hidden] [transform:rotateX(0deg)_translateZ(150px)]">
 
           {/* Round photo frame */}
           <div className={`w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br ${speaker.color} flex items-center justify-center text-white font-heading font-bold text-xl sm:text-3xl shadow-lg ring-4 ring-white`}>
@@ -82,9 +80,7 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
         </div>
 
         {/* BOTTOM FACE (Revealed on hover/tap) */}
-        <div className="absolute inset-0 bg-gradient-to-br from-bg to-white border border-accent/15 rounded-3xl overflow-hidden shadow-xl flex flex-col items-center justify-center p-4 sm:p-6 [backface-visibility:hidden] [transform:rotateX(-90deg)_translateZ(150px)]">
-          {/* Top gradient bar */}
-          <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${speaker.color}`} />
+        <div className="absolute inset-0 bg-[#f3f4f6]/45 backdrop-blur-3xl border border-white/60 rounded-3xl overflow-hidden shadow-xl flex flex-col items-center justify-center p-4 sm:p-6 [backface-visibility:hidden] [transform:rotateX(-90deg)_translateZ(150px)]">
 
           <h3 className="font-heading font-bold text-text text-base sm:text-xl text-center mb-4 sm:mb-6">
             Bağlantı Kurun

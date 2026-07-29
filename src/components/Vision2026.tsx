@@ -80,10 +80,10 @@ function GoalCard({ goal, index, isInView }: { goal: typeof goals[0]; index: num
 
         {/* FRONT FACE */}
         <div
-          className={`absolute inset-0 p-6 sm:p-10 rounded-3xl bg-gradient-to-br from-white/60 ${goal.bgColor.replace('95', '40')} border ${goal.borderColor} overflow-hidden flex flex-col items-center justify-center shadow-lg backdrop-blur-2xl`}
+          className={`absolute inset-0 p-6 sm:p-10 rounded-3xl bg-[#f3f4f6]/45  border ${goal.borderColor} overflow-hidden flex flex-col items-center justify-center shadow-lg backdrop-blur-3xl`}
           style={{ backfaceVisibility: 'hidden' }}
         >
-          <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${goal.color}`} />
+          <div className={`absolute top-0 left-0 right-0 h-1.5 bg-[#f3f4f6]/45`} />
 
           {/* Inner Content Wrapper */}
           <div className="flex flex-col items-start text-left w-full max-w-sm">
@@ -114,10 +114,10 @@ function GoalCard({ goal, index, isInView }: { goal: typeof goals[0]; index: num
 
         {/* BACK FACE */}
         <div
-          className={`absolute inset-0 p-6 sm:p-10 rounded-3xl bg-gradient-to-br from-white/60 ${goal.bgColor.replace('95', '40')} border ${goal.borderColor} overflow-hidden flex flex-col items-center justify-center shadow-lg backdrop-blur-2xl`}
+          className={`absolute inset-0 p-6 sm:p-10 rounded-3xl bg-[#f3f4f6]/45 border ${goal.borderColor} overflow-hidden flex flex-col items-center justify-center shadow-lg backdrop-blur-3xl`}
           style={{ backfaceVisibility: 'hidden', transform: 'rotateX(180deg)' }}
         >
-          <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${goal.color}`} />
+          <div className={`absolute top-0 left-0 right-0 h-1.5 bg-[#f3f4f6]/45}`} />
 
           {/* Inner Content Wrapper */}
           <div className="flex flex-col items-start text-left w-full max-w-sm">

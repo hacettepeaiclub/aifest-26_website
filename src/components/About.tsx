@@ -51,9 +51,8 @@ function CounterCard({
       initial={{ y: 20, opacity: 0 }}
       animate={isInView ? { y: 0, opacity: 1 } : {}}
       transition={{ duration: 0.5, delay }}
-      className="group relative p-4 sm:p-6 rounded-3xl bg-white border border-accent/10 hover:border-accent/30 transition-all duration-300 hover:shadow-xl hover:shadow-accent/5 overflow-hidden text-center flex flex-col justify-center aspect-square w-full max-w-[160px] mx-auto"
+      className="group relative p-4 sm:p-6 rounded-3xl bg-[#f3f4f6]/45 backdrop-blur-3xl border border-white/60 hover:bg-white/60 hover:border-white/80 transition-all duration-300 hover:shadow-xl hover:shadow-black/5 overflow-hidden text-center flex flex-col justify-center aspect-square w-full max-w-[160px] mx-auto"
     >
-      <div className={`absolute top-0 left-0 w-full h-1.5 sm:h-2 bg-gradient-to-r ${stat.color}`} />
       <p className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-text">{displayValue}</p>
       <p className="text-xs sm:text-sm text-text-muted font-body mt-1 sm:mt-2">{stat.label}</p>
     </motion.div>
@@ -66,7 +65,7 @@ function TypewriterHTML({ html, isInView, delay = 0, speed = 15 }: { html: strin
 
   useEffect(() => {
     if (!isInView) return;
-    
+
     const timer = setTimeout(() => {
       let i = 0;
       const interval = setInterval(() => {
@@ -74,7 +73,7 @@ function TypewriterHTML({ html, isInView, delay = 0, speed = 15 }: { html: strin
           clearInterval(interval);
           return;
         }
-        
+
         let nextI = i;
         if (html[nextI] === '<') {
           while (nextI < html.length && html[nextI] !== '>') {
@@ -84,14 +83,14 @@ function TypewriterHTML({ html, isInView, delay = 0, speed = 15 }: { html: strin
         } else {
           nextI++;
         }
-        
+
         setDisplayedHtml(html.substring(0, nextI));
         i = nextI;
       }, speed);
-      
+
       return () => clearInterval(interval);
     }, delay * 1000);
-    
+
     return () => clearTimeout(timer);
   }, [isInView, html, delay, speed]);
 
