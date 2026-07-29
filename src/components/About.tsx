@@ -60,16 +60,54 @@ function CounterCard({
   );
 }
 
+/* ─── Typewriter Component ─── */
+function TypewriterHTML({ html, isInView, delay = 0, speed = 15 }: { html: string, isInView: boolean, delay?: number, speed?: number }) {
+  const [displayedHtml, setDisplayedHtml] = useState('');
+
+  useEffect(() => {
+    if (!isInView) return;
+    
+    const timer = setTimeout(() => {
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i >= html.length) {
+          clearInterval(interval);
+          return;
+        }
+        
+        let nextI = i;
+        if (html[nextI] === '<') {
+          while (nextI < html.length && html[nextI] !== '>') {
+            nextI++;
+          }
+          nextI++; // include '>'
+        } else {
+          nextI++;
+        }
+        
+        setDisplayedHtml(html.substring(0, nextI));
+        i = nextI;
+      }, speed);
+      
+      return () => clearInterval(interval);
+    }, delay * 1000);
+    
+    return () => clearTimeout(timer);
+  }, [isInView, html, delay, speed]);
+
+  return <span dangerouslySetInnerHTML={{ __html: displayedHtml }} />;
+}
+
 /* ─── About Section ─── */
 export default function About() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   const stats = [
-    { value: '2018', numericValue: 2018, label: 'Kuruluş Yılı', color: 'from-cta to-cta/70' },
-    { value: '4', numericValue: 4, label: 'Başarılı Etkinlik', color: 'from-accent to-accent/70' },
-    { value: '500+', numericValue: 500, suffix: '+', label: 'Katılımcı', color: 'from-badge to-badge/70' },
-    { value: '50+', numericValue: 50, suffix: '+', label: 'Konuşmacı', color: 'from-deep to-deep/70' },
+
+    { value: '6', numericValue: 6, label: 'Başarılı Etkinlik', color: 'from-accent to-accent/70' },
+    { value: '1200+', numericValue: 1200, suffix: '+', label: 'Katılımcı', color: 'from-badge to-badge/70' },
+    { value: '60+', numericValue: 60, suffix: '+', label: 'Konuşmacı', color: 'from-deep to-deep/70' },
   ];
 
   return (
@@ -101,30 +139,36 @@ export default function About() {
             initial={{ y: 40, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-5 w-full text-left"
+            className="w-full text-left"
           >
-            <p className="text-sm sm:text-base lg:text-lg text-text-muted leading-relaxed font-body">
-              <span className="text-accent font-semibold"><br />AI Fest</span>, Türkiye'nin en büyük
+            <div className="space-y-5 w-full text-left min-h-[160px]">
+              <TypewriterHTML
+                isInView={isInView}
+                delay={0.2}
+                speed={15}
+                html={`<p class="text-sm sm:text-base lg:text-lg text-text-muted leading-relaxed font-body">
+              <span class="text-accent font-semibold"><br />AI Fest</span>, Türkiye'nin en büyük
               öğrenci odaklı yapay zeka etkinliklerinden biridir.
               <br />Her yıl sektörün önde gelen
               isimleri, araştırmacılar ve teknoloji liderlerini bir araya getirerek yapay zekanın
               geleceğini şekillendiren ilham verici bir platform sunuyoruz.
             </p>
-            <p className="text-sm sm:text-base lg:text-lg text-text-muted leading-relaxed font-body">
+            <p class="text-sm sm:text-base lg:text-lg text-text-muted leading-relaxed font-body mt-5">
               <br />Konferanslar, paneller, workshoplar ve networking alanlarıyla dolu bir gün sizi
               bekliyor. İster öğrenci olun ister profesyonel; yapay zeka ekosisteminin nabzını
-              tutmak, yeni bağlantılar kurmak ve kariyerinize yön vermek için{' '}
-              <span className="text-cta font-semibold">AI Fest '26</span>'ya katılın!
-            </p>
-
+              tutmak, yeni bağlantılar kurmak ve kariyerinize yön vermek için 
+              <span class="text-cta font-semibold">AI Fest '26</span>'ya katılın!
+            </p>`}
+              />
+            </div>
           </motion.div>
 
-          {/* Stats cards (2x2 grid) */}
+          {/* Stats cards (3 in a row) */}
           <motion.div
             initial={{ y: 40, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 0.88 } : {}}
             transition={{ duration: 0.9, delay: 0.7 }}
-            className="grid grid-cols-2 gap-4 sm:gap-6 w-full max-w-[400px] mx-auto mt-4"
+            className="grid grid-cols-3 gap-2 sm:gap-6 w-full max-w-[600px] mx-auto mt-4"
           >
             {stats.map((stat, i) => (
               <CounterCard
@@ -145,7 +189,7 @@ export default function About() {
           >
             <div style={{ marginTop: '-50px' }} className="h-px w-12 sm:w-24 bg-gradient-to-r from-transparent to-cta/50" />
             <span className="text-xs sm:text-sm text-text-muted/60 font-body italic text-center whitespace-nowrap" style={{ marginTop: '-50px' }}>
-              2018'den bugüne, her yıl büyüyerek
+              2019'dan bugüne, her yıl büyüyerek
             </span>
             <div style={{ marginTop: '-50px' }} className="h-px w-12 sm:w-24 bg-gradient-to-l from-transparent to-cta/50" />
           </motion.div>

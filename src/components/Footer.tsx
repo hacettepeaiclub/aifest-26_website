@@ -57,9 +57,43 @@ export default function Footer() {
   const isInView = useInView(ref, { once: true, margin: '-50px' });
 
   return (
-    <footer id="iletisim" className="relative bg-deep overflow-hidden">
+    <footer id="iletisim" className="relative bg-deep overflow-hidden text-white">
+      {/* Animated gradient blobs (same as Hero) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <motion.div
+          animate={{
+            x: [0, 50, -40, 0],
+            y: [0, -70, 40, 0],
+            scale: [1, 1.25, 0.8, 1],
+          }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -top-20 -right-20 w-[600px] h-[600px] rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(57, 184, 186, 0.45) 0%, transparent 70%)', willChange: 'transform' }}
+        />
+        <motion.div
+          animate={{
+            x: [0, -50, 40, 0],
+            y: [0, 50, -60, 0],
+            scale: [1, 0.8, 1.25, 1],
+          }}
+          transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -bottom-20 -left-20 w-[600px] h-[600px] rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(218, 93, 151, 0.45) 0%, transparent 70%)', willChange: 'transform' }}
+        />
+        <motion.div
+          animate={{
+            x: [0, 40, -50, 0],
+            y: [0, -40, 50, 0],
+            scale: [1, 1.15, 0.85, 1],
+          }}
+          transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%)', willChange: 'transform' }}
+        />
+      </div>
+
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-deep via-deep-light/20 to-deep" />
+      <div className="absolute inset-0 bg-gradient-to-br from-deep/75 via-deep-light/20 to-deep/75 pointer-events-none z-0" />
 
       {/* Pattern overlay */}
       <div
@@ -86,14 +120,14 @@ export default function Footer() {
                   src={`${import.meta.env.BASE_URL}aifest_hero_logo.png`}
                   alt="AI Fest"
                   className="w-24 h-24 object-contain"
-                  style={{ marginLeft: '-1px' }}
+                  style={{ marginLeft: '-15px', marginTop: '-5px' }}
                 />
                 <div>
-                  <h3 className="font-headline font-bold text-white text-xl" style={{ marginLeft: '-25px', marginTop: '7px' }}>AI Fest '26</h3>
-                  <p className="text-xs text-white/50 font-body" style={{ marginLeft: '-25px', marginTop: '-2px' }}>Hacettepe Üniversitesi <br />Yapay Zeka Topluluğu</p>
+                  <h3 className="font-headline font-bold text-white text-xl" style={{ marginLeft: '-25px', marginTop: '5px' }}>AI Fest '26</h3>
+                  <p className="text-xs text-white/50 font-body" style={{ marginLeft: '-25px', marginTop: '0px' }}>Hacettepe Üniversitesi <br />Yapay Zeka Topluluğu</p>
                 </div>
               </div>
-              <p className="text-sm text-white/60 font-body leading-relaxed max-w-xs text-center sm:text-left sm:pl-10" style={{ marginBottom: '5px' }}>
+              <p className="text-sm text-white/60 font-body leading-relaxed max-w-xs text-center sm:text-left sm:pl-10" style={{ marginBottom: '7px', marginLeft: '7px' }}>
                 2018'den bugüne yapay zekâ dünyasına adım atmak isteyen herkesi bir araya getiriyoruz.
               </p>
             </motion.div>
