@@ -56,7 +56,7 @@ export default function Location() {
             initial={{ y: 30, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="w-full p-5 sm:p-8 rounded-3xl bg-[#f3f4f6]/75 backdrop-blur-xl border-1 border-purple-700/8 hover:border-purple-700/95 transition-all duration-300 shadow-lg shadow-purple-700/25 flex flex-col items-center text-center gap-2"
+            className="w-full p-5 sm:p-8 rounded-3xl bg-[#f3f4f6]/95 backdrop-blur-xl border-1 border-purple-700/8 hover:border-purple-700/95 transition-all duration-300 shadow-lg shadow-purple-700/25 flex flex-col items-center text-center gap-2"
             style={{ marginBottom: '-16px', marginTop: '-20px' }}
           >
             {/* Centered venue name & address */}
@@ -72,7 +72,7 @@ export default function Location() {
 
             {/* Horizontal features list */}
             <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-4 pt-5 border-t border-accent/10 w-full">
-              <div className="flex items-center gap-4.5 text-sm sm:text-base text-text-muted font-body">
+              <div className="flex items-center gap-2.5 text-sm sm:text-base text-text-muted font-body">
                 <span className="w-2 h-2 rounded-full bg-cta flex-shrink-0" />
                 1000 kişi kapasiteli konferans salonu
               </div>
