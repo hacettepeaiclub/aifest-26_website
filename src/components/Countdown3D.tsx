@@ -1,60 +1,94 @@
 import { useState, useEffect, useRef } from 'react';
-import { Canvas, useThree } from '@react-three/fiber';
+import { Canvas, useThree, useFrame } from '@react-three/fiber';
 import { Text3D, Center, Float, Environment, ContactShadows, Text } from '@react-three/drei';
 import * as THREE from 'three';
 
 const TARGET_DATE = new Date('2026-10-24T10:00:00').getTime();
 
-function TimeBlock({ value, label, position }: { value: string, label: string, position: [number, number, number] }) {
-  const group = useRef<THREE.Group>(null);
+function TimeBlock({ value, label, position, index }: { value: string, label: string, position: [number, number, number], index: number }) {
+  const pivotRef = useRef<THREE.Group>(null);
+  const pivotHeight = 4.5;
+
+  useFrame((state) => {
+    if (!pivotRef.current) return;
+    
+    // Sequential collision wave (Domino/Caterpillar effect)
+    const speed = 4;
+    const cycle = 8; // 0..4 right, 4..8 left
+    const maxGap = 0.5; // Gap between balls when radius is 1.0
+    
+    let t = (state.clock.elapsedTime * speed) % cycle;
+    let offset = 0;
+    
+    if (t < 4) {
+      // Moving right sequence
+      const startT = index;
+      if (t <= startT) offset = 0;
+      else if (t < startT + 1) offset = (t - startT) * maxGap; // Linear movement
+      else offset = maxGap;
+    } else {
+      // Moving left sequence (starts from rightmost ball)
+      const startT = 4 + (3 - index);
+      if (t <= startT) offset = maxGap;
+      else if (t < startT + 1) offset = (1 - (t - startT)) * maxGap; // Linear movement
+      else offset = 0;
+    }
+    
+    pivotRef.current.position.x = offset;
+    pivotRef.current.rotation.z = 0; // reset rotation
+  });
 
   return (
-    <group position={position} ref={group}>
-      <Float speed={2} rotationIntensity={0.15} floatIntensity={0.5}>
-        {/* Glass Base */}
-        <mesh position={[0, 0, -0.2]} rotation={[Math.PI / 2, 0, 0]} castShadow receiveShadow>
-          <cylinderGeometry args={[1.3, 1.3, 0.3, 64]} />
-          <meshPhysicalMaterial
-            color="#4E439B" // hero background purple tone (accent)
-            metalness={0.1}
-            roughness={0.2}
-            transmission={0.8}
-            thickness={0.5}
-            ior={1.5}
-            clearcoat={1}
-            clearcoatRoughness={0.1}
-          />
-        </mesh>
+    <group position={position}>
+      {/* Pivot point at top */}
+      <group position={[0, pivotHeight, 0]} ref={pivotRef}>
+        {/* Block Content */}
+        <group position={[0, -pivotHeight, 0]}>
+          {/* Glass Sphere - Radius 1.0 for gap spacing */}
+          <mesh castShadow receiveShadow>
+            <sphereGeometry args={[1.0, 32, 32]} />
+            <meshPhysicalMaterial
+              color="#4E439B"
+              metalness={0.1}
+              roughness={0.2}
+              transmission={0.8}
+              thickness={0.5}
+              ior={1.5}
+              clearcoat={1}
+              clearcoatRoughness={0.1}
+            />
+          </mesh>
 
-        {/* Number */}
-        <Center position={[0, 0.15, 0.1]}>
-          <Text3D
-            font={`${import.meta.env.BASE_URL}helvetiker_regular.typeface.json`}
-            size={0.75}
-            height={0.15}
-            curveSegments={12}
-            bevelEnabled
-            bevelThickness={0.02}
-            bevelSize={0.02}
-            bevelOffset={0}
-            bevelSegments={5}
+          {/* Number - Brought significantly forward */}
+          <Center position={[0, 0.25, 1.25]}>
+            <Text3D
+              font={`${import.meta.env.BASE_URL}helvetiker_regular.typeface.json`}
+              size={0.75}
+              height={0.15}
+              curveSegments={12}
+              bevelEnabled
+              bevelThickness={0.02}
+              bevelSize={0.02}
+              bevelOffset={0}
+              bevelSegments={5}
+            >
+              {value}
+              <meshStandardMaterial color="#ffffff" metalness={0.61} roughness={0.2} />
+            </Text3D>
+          </Center>
+
+          {/* Label - Brought significantly forward */}
+          <Text
+            position={[0, -0.45, 1.25]}
+            fontSize={0.22}
+            color="#FDE68A"
+            anchorX="center"
+            anchorY="middle"
           >
-            {value}
-            <meshStandardMaterial color="#ffffff" metalness={0.61} roughness={0.2} />
-          </Text3D>
-        </Center>
-
-        {/* Label */}
-        <Text
-          position={[0, -0.55, 0.1]}
-          fontSize={0.22}
-          color="#FDE68A" // yellow-ish tint
-          anchorX="center"
-          anchorY="middle"
-        >
-          {label}
-        </Text>
-      </Float>
+            {label}
+          </Text>
+        </group>
+      </group>
     </group>
   );
 }
@@ -126,11 +160,14 @@ export default function Countdown3D() {
         <Environment preset="city" />
 
         <ResponsiveGroup>
-          {/* We spread them horizontally */}
-          <TimeBlock value={timeUnits[0].value} label={timeUnits[0].label} position={[-3.75, 0, 0]} />
-          <TimeBlock value={timeUnits[1].value} label={timeUnits[1].label} position={[-1.25, 0, 0]} />
-          <TimeBlock value={timeUnits[2].value} label={timeUnits[2].label} position={[1.25, 0, 0]} />
-          <TimeBlock value={timeUnits[3].value} label={timeUnits[3].label} position={[3.75, 0, 0]} />
+          <Float speed={1.5} rotationIntensity={0.1} floatIntensity={0.2}>
+            
+            {/* We spread them horizontally with 2.5 distance exactly matching 1.25 radius */}
+            <TimeBlock value={timeUnits[0].value} label={timeUnits[0].label} position={[-3.75, 0, 0]} index={0} />
+            <TimeBlock value={timeUnits[1].value} label={timeUnits[1].label} position={[-1.25, 0, 0]} index={1} />
+            <TimeBlock value={timeUnits[2].value} label={timeUnits[2].label} position={[1.25, 0, 0]} index={2} />
+            <TimeBlock value={timeUnits[3].value} label={timeUnits[3].label} position={[3.75, 0, 0]} index={3} />
+          </Float>
         </ResponsiveGroup>
 
         {/* Soft shadow on the "floor" */}
