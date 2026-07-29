@@ -9,12 +9,12 @@ const goals = [
     subtitle: 'Multidisipliner Güç',
     description:
       'Katılımcı profilimizi sadece Mühendislik Fakültesi ile sınırlı tutmayarak; İktisadi İdari Bilimler Fakültesi, Tıp Fakültesi, Fen ve Edebiyat Fakültesi gibi yapay zekanın dönüştürdüğü tüm dikey sektörlerdeki öğrencileri tek bir ekosistemde buluşturuyoruz. Böylece ağını farklı disiplenlerden kişilerle tanışıp genişletirsin.',
-    tags: ['Müh. Fakültesi', 'İktisadi ve İdari Bilimler Fakültesi', 'Fen ve Edebiyat Fakültesi', 'Tıp Fakültesi'],
-    color: 'from-cta to-cta',
+    tags: ['Müh. Fakültesi', 'İİBF', 'Fen Edb. Fakültesi', 'Tıp Fakültesi'],
+    color: 'from-gray to-cta',
     borderColor: 'border-cta/20 hover:border-cta/40',
     bgColor: 'to-cta/95',
     textColor: 'text-cta',
-    tagBgColor: 'bg-cta/20',
+    tagBgColor: 'bg-cta/10',
   },
   {
     icon: Lightbulb,
@@ -23,11 +23,11 @@ const goals = [
     description:
       'Şirketlerimizin teknik güçlerini ve kariyer olanaklarını sadece sahne sunumlarıyla değil; fuaye alanındaki özel stant etkinlikleri, anlık mini-case yarışmaları ve uygulamalı workshop\'lar ile doğrudan deneyimleyebilirsin. Belli mi olur belki de bir staj ayarlarsın.',
     tags: ['Fuaye Standları', 'Mini-Case', 'Workshop'],
-    color: 'from-accent to-accent',
+    color: 'from-accent to-gray',
     borderColor: 'border-accent/20 hover:border-accent/40',
     bgColor: 'to-accent/95',
     textColor: 'text-accent',
-    tagBgColor: 'bg-accent/20',
+    tagBgColor: 'bg-accent/10',
   },
   {
     icon: Globe,
@@ -36,11 +36,11 @@ const goals = [
     description:
       'Çeşitli öğrenci topluluklarıyla stratejik ortaklıklar kurarak, etkinliğin kampüs içi reklam ve tanıtım yayılımını maksimuma çıkarmak; iş birliği yaptığımız topluluklara fuaye alanında özel stant açma imkânı tanıyarak AI Fest\'i çok sesli bir gençlik zirvesine dönüştürürerek farklı üniversiteden öğrenciler ile tanışman için olanak sağlıyoruz.',
     tags: ['Stratejik İşbirlikleri', 'Fuaye Standı', 'Tanıtım'],
-    color: 'from-badge to-badge',
+    color: 'from-gray to-badge',
     borderColor: 'border-badge/20 hover:border-badge/20',
     bgColor: 'to-badge/95',
     textColor: 'text-badge',
-    tagBgColor: 'bg-badge/20',
+    tagBgColor: 'bg-badge/10',
   },
 ];
 
@@ -91,8 +91,8 @@ function GoalCard({ goal, index, isInView }: { goal: typeof goals[0]; index: num
               <goal.icon className="w-7 h-7" />
             </div>
 
-            <h3 className="font-heading font-semibold text-text text-xl mb-2">{goal.title}</h3>
-            <p className="text-lg text-cta font-body font-medium" style={{ marginBottom: '10px' }}>
+            <h2 className="font-heading font-bold text-text text-2xl mb-8">{goal.title}</h2>
+            <p className="text-md italic text-slate-800 font-body font-light" style={{ marginBottom: '8px', marginTop: '6px' }}>
               {goal.subtitle}
             </p>
 
@@ -100,7 +100,7 @@ function GoalCard({ goal, index, isInView }: { goal: typeof goals[0]; index: num
               {goal.tags.map(tag => (
                 <span
                   key={tag}
-                  className={`px-4 py-1.5 rounded-full ${goal.tagBgColor} backdrop-blur-md border border-white/60 ${goal.textColor} font-semibold text-xs sm:text-sm shadow-sm transition-all duration-300 hover:bg-white/80 hover:text-text hover:-translate-y-0.5`}
+                  className={`px-4 py-1.5 rounded-md backdrop-blur-2xl border border-white/10 bg-gradient-to-br from-gray-50 to-gray-300/50 text-amber-950 font-medium text-xs sm:text-sm shadow-md transition-all duration-300 hover:bg-white/80 hover:text-text hover:-translate-y-0.5`}
                 >
                   {tag}
                 </span>

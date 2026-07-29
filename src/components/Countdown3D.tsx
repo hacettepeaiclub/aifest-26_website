@@ -11,15 +11,15 @@ function TimeBlock({ value, label, position, index }: { value: string, label: st
 
   useFrame((state) => {
     if (!pivotRef.current) return;
-    
+
     // Sequential collision wave (Domino/Caterpillar effect)
     const speed = 4;
     const cycle = 8; // 0..4 right, 4..8 left
     const maxGap = 0.5; // Gap between balls when radius is 1.0
-    
+
     let t = (state.clock.elapsedTime * speed) % cycle;
     let offset = 0;
-    
+
     if (t < 4) {
       // Moving right sequence
       const startT = index;
@@ -33,7 +33,7 @@ function TimeBlock({ value, label, position, index }: { value: string, label: st
       else if (t < startT + 1) offset = (1 - (t - startT)) * maxGap; // Linear movement
       else offset = 0;
     }
-    
+
     pivotRef.current.position.x = offset;
     pivotRef.current.rotation.z = 0; // reset rotation
   });
@@ -59,8 +59,8 @@ function TimeBlock({ value, label, position, index }: { value: string, label: st
             />
           </mesh>
 
-          {/* Number - Brought significantly forward */}
-          <Center position={[0, 0.25, 1.25]}>
+          {/* Number - Perfectly centered */}
+          <Center position={[0.15, 0.14, 1.25]}>
             <Text3D
               font={`${import.meta.env.BASE_URL}helvetiker_regular.typeface.json`}
               size={0.75}
@@ -73,13 +73,13 @@ function TimeBlock({ value, label, position, index }: { value: string, label: st
               bevelSegments={5}
             >
               {value}
-              <meshStandardMaterial color="#ffffff" metalness={0.61} roughness={0.2} />
+              <meshStandardMaterial color="#ffffff" metalness={1.69} roughness={0.2} />
             </Text3D>
           </Center>
 
           {/* Label - Brought significantly forward */}
           <Text
-            position={[0, -0.45, 1.25]}
+            position={[0.2, -0.5, 1.25]}
             fontSize={0.22}
             color="#FDE68A"
             anchorX="center"
@@ -161,7 +161,7 @@ export default function Countdown3D() {
 
         <ResponsiveGroup>
           <Float speed={1.5} rotationIntensity={0.1} floatIntensity={0.2}>
-            
+
             {/* We spread them horizontally with 2.5 distance exactly matching 1.25 radius */}
             <TimeBlock value={timeUnits[0].value} label={timeUnits[0].label} position={[-3.75, 0, 0]} index={0} />
             <TimeBlock value={timeUnits[1].value} label={timeUnits[1].label} position={[-1.25, 0, 0]} index={1} />
