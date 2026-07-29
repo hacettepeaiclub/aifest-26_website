@@ -58,7 +58,7 @@ function GoalCard({ goal, index, isInView }: { goal: typeof goals[0]; index: num
       onClick={() => setFlipped(!flipped)}
     >
       <div
-        className={`relative w-full h-full transition-transform duration-700 ${flipped ? '[transform:rotateX(180deg)]' : ''} md:!transform-none md:group-hover:[transform:rotateX(180deg)]`}
+        className={`relative w-full h-full transition-transform duration-700 ${flipped ? '[transform:rotateX(180deg)]' : ''} group-hover:[transform:rotateX(180deg)]`}
         style={{ transformStyle: 'preserve-3d' }}
       >
         {/* INVISIBLE SPACER (Forces container height for absolute children) */}

@@ -57,7 +57,7 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
       className="flex-shrink-0 w-[220px] h-[220px] sm:w-[300px] sm:h-[300px] [perspective:1500px]"
       onClick={() => setFlipped(!flipped)}
     >
-      <div className={`relative w-full h-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d] ${flipped ? '[transform:translateZ(-150px)_rotateX(90deg)]' : '[transform:translateZ(-150px)]'} sm:!transform-none sm:group-hover:[transform:translateZ(-150px)_rotateX(90deg)]`}>
+      <div className={`relative w-full h-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d] ${flipped ? '[transform:translateZ(-150px)_rotateX(90deg)]' : '[transform:translateZ(-150px)]'} group-hover:[transform:translateZ(-150px)_rotateX(90deg)]`}>
 
         {/* FRONT FACE */}
         <div className="absolute inset-0 bg-white border border-accent/15 rounded-3xl overflow-hidden shadow-xl flex flex-col items-center justify-center p-4 sm:p-6 [backface-visibility:hidden] [transform:rotateX(0deg)_translateZ(150px)]">
