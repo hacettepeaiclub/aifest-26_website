@@ -109,13 +109,13 @@ const Page = forwardRef<HTMLDivElement, { event: typeof timelineEvents[0]; numbe
           </div>
 
           {/* Page Footer */}
-          <div className="absolute bottom-4 left-8 right-8 flex justify-between text-gray-400 font-body text-sm font-semibold pointer-events-none">
-            <div className="flex items-center" style={{ marginLeft: '-30px' }}>
+          <div className="absolute bottom-1 left-1 right-2 flex justify-between text-gray-400 font-body text-sm font-semibold pointer-events-none">
+            <div className="flex items-left" >
               <span>← Geri</span>
             </div>
-            <div className="flex items-center">
-              <span className="text-gray-300">Sayfa {number}</span>
-              <span className="text-gray-500 mx-2" style={{ marginRight: '1px' }}></span>
+            <div className="flex items-right">
+              <span className="text-gray-300" > Sayfa {number} </span>
+              <span className="text-gray-500 "></span>
               <span>|İleri →</span>
             </div>
           </div>
