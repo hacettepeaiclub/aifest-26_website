@@ -75,7 +75,7 @@ export default function Navbar({ onMenuToggle, isMenuOpen }: NavbarProps) {
                   style={{ transform: 'scale(1.2)' }}
                 />
               </div>
-              <span className={`hidden sm:block font-heading font-bold text-sm transition-colors duration-300 ${scrolled ? 'text-black' : 'text-white'}`}>
+              <span className={`block font-heading font-bold text-[9px] sm:text-sm leading-tight sm:leading-normal transition-colors duration-300 ${scrolled ? 'text-black' : 'text-white'}`}>
                 Hacettepe Üniversitesi
                 <br />
                 Yapay Zeka Topluluğu
@@ -87,7 +87,7 @@ export default function Navbar({ onMenuToggle, isMenuOpen }: NavbarProps) {
           <div className="flex items-center gap-2 sm:gap-4">
             <a
               href="#iletisim"
-              className={`hidden sm:inline-flex text-base font-body font-semibold drop-shadow-sm hover:text-cta transition-colors duration-300 ${scrolled ? 'text-black' : 'text-white'}`}
+              className={`inline-flex text-[11px] sm:text-base font-body font-semibold drop-shadow-sm hover:text-cta transition-colors duration-300 ${scrolled ? 'text-black' : 'text-white'}`}
             >
               İletişim
             </a>
@@ -95,8 +95,8 @@ export default function Navbar({ onMenuToggle, isMenuOpen }: NavbarProps) {
               id="nav-register-btn"
               href="#"
               onClick={(e) => { e.preventDefault(); alert('Kayıtlar yakında başlayacak. Takipte kal!'); }}
-              className={`text-base sm:text-lg font-body font-semibold drop-shadow-sm hover:text-cta transition-colors duration-300 ${scrolled ? 'text-black' : 'text-white'}`}
-              style={{ marginRight: '18px' }}
+              className={`text-sm sm:text-lg font-body font-semibold drop-shadow-sm hover:text-cta transition-colors duration-300 ${scrolled ? 'text-black' : 'text-white'}`}
+              style={{ marginRight: '15px' }}
             >
               Kayıt Ol
             </a>

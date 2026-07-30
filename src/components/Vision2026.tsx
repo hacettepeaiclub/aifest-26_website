@@ -63,7 +63,7 @@ function GoalCard({ goal, index, isInView }: { goal: typeof goals[0]; index: num
       >
         {/* INVISIBLE SPACER (Forces container height for absolute children) */}
         <div className="invisible p-6 sm:p-10 pointer-events-none flex flex-col items-center justify-center">
-          <div className="flex flex-col items-start text-left">
+          <div className="flex flex-col items-start text-left p-4">
             <div className="w-14 h-14 mb-6" />
             <h3 className="text-xl mb-2">{goal.title}</h3>
             <p className="text-lg">{goal.subtitle}</p>
@@ -86,7 +86,7 @@ function GoalCard({ goal, index, isInView }: { goal: typeof goals[0]; index: num
           <div className={`absolute top-0 left-0 right-0 h-1.5 bg-[#f3f4f6]/45`} />
 
           {/* Inner Content Wrapper */}
-          <div className="flex flex-col items-start text-left w-full max-w-sm">
+          <div className="flex flex-col items-start text-left w-full max-w-sm p-4">
             <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${goal.color} text-white mb-6 shadow-md`} style={{ marginBottom: '10px' }}>
               <goal.icon className="w-7 h-7" />
             </div>
@@ -106,9 +106,8 @@ function GoalCard({ goal, index, isInView }: { goal: typeof goals[0]; index: num
                 </span>
               ))}
             </div>
-
             {/* Mobile hint */}
-            <p className="text-xs text-text-muted/60 mt-4 md:hidden">Detaylar için dokun ↻</p>
+            <p className="text-xs text-text-muted/60 absolute bottom-[5px] left-1/2 -translate-x-1/2 md:hidden whitespace-nowrap">Detaylar için dokun ↻</p>
           </div>
         </div>
 
@@ -120,12 +119,12 @@ function GoalCard({ goal, index, isInView }: { goal: typeof goals[0]; index: num
           <div className={`absolute top-0 left-0 right-0 h-1.5 bg-[#f3f4f6]/45}`} />
 
           {/* Inner Content Wrapper */}
-          <div className="flex flex-col items-start text-left w-full max-w-sm">
+          <div className="flex flex-col items-start text-left w-full max-w-sm p-4">
             <p className="text-sm sm:text-base text-text-muted font-body leading-relaxed">
               {goal.description}
             </p>
             {/* Mobile hint */}
-            <p className="text-xs text-text-muted/60 mt-4 md:hidden">Geri dönmek için dokun ↻</p>
+            <p className="text-xs text-text-muted/60 absolute bottom-[5px] left-1/2 -translate-x-1/2 md:hidden whitespace-nowrap">Geri dönmek için dokun ↻</p>
           </div>
         </div>
       </div>
@@ -138,7 +137,7 @@ export default function Vision2026() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="vizyon" className="py-20 sm:py-28 px-4 sm:px-8 lg:px-16 xl:px-32 w-full relative flex flex-col items-center bg-gradient-to-b from-deep/5 to-deep/10">
+    <section id="vizyon" className="py-12 px-4 sm:py-28 sm:px-8 lg:px-16 xl:px-32 w-full relative flex flex-col items-center bg-gradient-to-b from-deep/5 to-deep/10">
       {/* Background blobs */}
       <div className="absolute top-1/4 right-0 w-[400px] h-[400px] rounded-full bg-cta/5 blur-[100px]" />
       <div className="absolute bottom-1/4 left-0 w-[300px] h-[300px] rounded-full bg-accent/5 blur-[80px]" />

@@ -115,7 +115,7 @@ export default function Speakers() {
   const marqueeSpeakers = [...allSpeakers, ...allSpeakers];
 
   return (
-    <section id="konusmacilar" className="py-16 sm:py-64 relative overflow-hidden w-full bg-gradient-to-b from-deep/10 to-deep/15">
+    <section id="konusmacilar" className="py-12 sm:py-64 relative overflow-hidden w-full bg-gradient-to-b from-deep/10 to-deep/15">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/60 to-transparent pointer-events-none" />
 

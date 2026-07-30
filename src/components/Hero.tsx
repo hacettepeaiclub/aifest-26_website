@@ -77,7 +77,7 @@ export default function Hero() {
           initial={{ y: -10, opacity: 0 }}
           animate={{ y: 20, opacity: 1 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="mb-4 sm:mb-10 flex justify-center"
+          className="mb-12 sm:mb-10 flex justify-center"
         >
           <motion.img
             src={`${import.meta.env.BASE_URL}aifest_hero_logo.png`}
@@ -138,8 +138,7 @@ export default function Hero() {
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6, ease: 'easeOut' }}
-          className="relative z-50 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-12 w-full sm:w-auto"
-          style={{ marginTop: '-60px' }}
+          className="relative z-50 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-12 w-full sm:w-auto -mt-4 sm:-mt-16"
         >
           <a
             href="#hakkinda"

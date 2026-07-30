@@ -97,42 +97,8 @@ const Page = forwardRef<HTMLDivElement, { event: typeof timelineEvents[0]; numbe
 Page.displayName = 'Page';
 
 
-/* ─── Mobile Timeline Card ─── */
-function MobileTimelineCard({ event, index }: { event: typeof timelineEvents[0]; index: number }) {
-  return (
-    <motion.div
-      initial={{ y: 30, opacity: 0 }}
-      whileInView={{ y: 0, opacity: 1 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="relative w-full rounded-2xl bg-[#f3f4f6]/45 backdrop-blur-3xl border border-white/60 shadow-lg overflow-hidden"
-    >
-      
-      <div className="p-5">
-        {/* Year */}
-        <div className="text-5xl font-black tracking-tighter mb-3" style={{ color: event.colorHex }}>
-          {event.year}
-        </div>
-        
-        {/* Description */}
-        <p className="text-sm text-text-muted font-body leading-relaxed mb-4">
-          {event.description}
-        </p>
-        
-        {/* Highlight badge */}
-        <div
-          className="inline-flex text-xs font-bold py-1.5 px-4 rounded-xl bg-white border border-gray-200 shadow-sm"
-          style={{ color: event.colorHex }}
-        >
-          ✨ {event.highlight}
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-/* ─── E-Book FlipBook Component (Desktop Only) ─── */
-function EBookFlip() {
+/* ─── E-Book FlipBook Component ─── */
+function EBookFlip({ scale }: { scale: number }) {
   const flipBook = useRef<any>(null);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -154,17 +120,17 @@ function EBookFlip() {
   }, []);
 
   return (
-    <div
-      className="relative mx-auto flex justify-center"
-      style={{
-        width: PAGE_WIDTH,
-        height: PAGE_HEIGHT,
-        perspective: '1500px',
-        marginTop: '10px',
-        marginBottom: '10px'
-      }}
-    >
-      {/* Stationary Binding Assembly */}
+    <div style={{ width: PAGE_WIDTH * scale, height: PAGE_HEIGHT * scale, margin: '0 auto' }}>
+      <div
+        className="relative mx-auto flex justify-center origin-top-left"
+        style={{
+          width: PAGE_WIDTH,
+          height: PAGE_HEIGHT,
+          perspective: '1500px',
+          transform: `scale(${scale})`,
+        }}
+      >
+        {/* Stationary Binding Assembly */}
       <div className="absolute top-[-6px] left-0 right-0 z-10 pointer-events-none flex flex-col items-center">
         {/* Stationary Colored Header (Modern Binding Strip) */}
         <div
@@ -228,6 +194,7 @@ function EBookFlip() {
           {/* @ts-ignore */}
         </HTMLFlipBook>
       </div>
+      </div>
     </div>
   );
 }
@@ -236,20 +203,23 @@ function EBookFlip() {
 export default function Timeline() {
   const sectionRef = useRef<HTMLElement>(null!);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
-  const [isMobile, setIsMobile] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    const checkWidth = () => setWindowWidth(window.innerWidth);
+    checkWidth();
+    window.addEventListener('resize', checkWidth);
+    return () => window.removeEventListener('resize', checkWidth);
   }, []);
+
+  const isMobile = windowWidth < 768;
+  const scale = isMobile ? Math.min(1, (windowWidth - 14) / PAGE_WIDTH) : 1;
 
   return (
     <section
       ref={sectionRef}
       id="tarihce"
-      className="relative w-full py-16 sm:py-28 overflow-hidden bg-gradient-to-b from-deep/30 to-deep/40"
+      className="relative w-full py-12 px-[7px] sm:py-28 sm:px-8 lg:px-16 overflow-hidden bg-gradient-to-b from-deep/30 to-deep/40"
     >
       {/* Background glow blobs */}
       <div className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full bg-cta/10 blur-[150px]" />
@@ -274,16 +244,8 @@ export default function Timeline() {
       </motion.div>
 
       {/* Content: Mobile cards or Desktop flipbook */}
-      <div className="relative w-full z-10 px-4 flex justify-center">
-        {isMobile ? (
-          <div className="w-full max-w-md flex flex-col gap-4">
-            {timelineEvents.map((event, i) => (
-              <MobileTimelineCard key={event.year} event={event} index={i} />
-            ))}
-          </div>
-        ) : (
-          <EBookFlip />
-        )}
+      <div className="relative w-full z-10 px-4 sm:px-4 flex justify-center">
+        <EBookFlip scale={scale} />
       </div>
     </section>
   );

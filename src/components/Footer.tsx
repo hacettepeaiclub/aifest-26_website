@@ -113,21 +113,20 @@ export default function Footer() {
               initial={{ y: 30, opacity: 0 }}
               animate={isInView ? { y: 0, opacity: 1 } : {}}
               transition={{ duration: 0.6 }}
-              className="md:col-span-1"
+              className="md:col-span-1 flex flex-col items-center text-center sm:items-start sm:text-left"
             >
-              <div className="flex items-center gap-3 mb-5 justify-center sm:justify-start">
+              <div className="flex flex-col sm:flex-row items-center gap-3 mb-4 text-center sm:text-left">
                 <img
                   src={`${import.meta.env.BASE_URL}aifest_hero_logo.png`}
                   alt="AI Fest"
-                  className="w-24 h-24 object-contain max-sm:!m-0"
-                  style={{ marginLeft: '-15px', marginTop: '-5px' }}
+                  className="w-24 h-24 object-contain"
                 />
-                <div>
-                  <h3 className="font-headline font-bold text-white text-xl max-sm:!m-0 max-sm:text-center" style={{ marginLeft: '-25px', marginTop: '5px' }}>AI Fest '26</h3>
-                  <p className="text-xs text-white/50 font-body max-sm:!m-0 max-sm:text-center" style={{ marginLeft: '-25px', marginTop: '0px' }}>Hacettepe Üniversitesi <br />Yapay Zeka Topluluğu</p>
+                <div className="text-center sm:text-left">
+                  <h3 className="font-headline font-bold text-white text-xl text-center sm:text-left">AI Fest '26</h3>
+                  <p className="text-xs text-white/50 font-body text-center sm:text-left">Hacettepe Üniversitesi <br />Yapay Zeka Topluluğu</p>
                 </div>
               </div>
-              <p className="text-sm text-white/60 font-body leading-relaxed max-w-xs text-center sm:text-left sm:pl-10 max-sm:!m-0 max-sm:mx-auto" style={{ marginBottom: '7px', marginLeft: '7px' }}>
+              <p className="text-sm text-white/60 font-body leading-relaxed max-w-xs text-center sm:text-left">
                 2018'den bugüne yapay zekâ dünyasına adım atmak isteyen herkesi bir araya getiriyoruz.
               </p>
             </motion.div>
@@ -139,7 +138,7 @@ export default function Footer() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="md:justify-self-center text-center flex flex-col items-center"
             >
-              <h4 className="font-heading font-semibold text-white text-sm uppercase tracking-wider mb-5 max-sm:!m-0 max-sm:mb-5" style={{ marginTop: '17px' }}>
+              <h4 className="font-heading font-semibold text-white text-sm uppercase tracking-wider mb-4">
                 Hızlı Bağlantılar
               </h4>
               <nav className="space-y-3">
@@ -148,8 +147,6 @@ export default function Footer() {
                     key={link.label}
                     href={link.href}
                     className="block text-sm text-white/60 hover:text-cta font-body transition-colors duration-300 text-center"
-
-
                   >
                     {link.label}
                   </a>
@@ -162,26 +159,24 @@ export default function Footer() {
               initial={{ y: 30, opacity: 0 }}
               animate={isInView ? { y: 0, opacity: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="md:justify-self-end mr-0 sm:mr-[9px] text-center sm:text-left"
+              className="md:justify-self-end text-center sm:text-left flex flex-col items-center sm:items-start"
             >
-              <h4 className="font-heading font-semibold text-white text-sm uppercase tracking-wider mb-5 max-sm:!m-0 max-sm:mb-5" style={{ marginRight: '5px', marginTop: '17px' }}>
+              <h4 className="font-heading font-semibold text-white text-sm uppercase tracking-wider mb-4 text-center sm:text-left">
                 Bize Ulaşın
               </h4>
-              <div className="space-y-3 mb-6">
+              <div className="space-y-3 mb-6 text-center sm:text-left flex flex-col items-center sm:items-start">
                 <a
                   href="https://hacettepeaiclub.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center max-sm:justify-center gap-2 text-sm text-white/60 hover:text-cta font-body transition-colors max-sm:!m-0"
-                  style={{ marginRight: '5px' }}
+                  className="flex items-center justify-center sm:justify-start gap-2 text-sm text-white/60 hover:text-cta font-body transition-colors"
                 >
                   <Globe className="w-4 h-4" />
                   hacettepeaiclub.com
                 </a>
                 <a
                   href="mailto:contact@hacettepeaiclub.com"
-                  className="flex items-center max-sm:justify-center gap-2 text-sm text-white/60 hover:text-cta font-body transition-colors max-sm:!m-0"
-                  style={{ marginRight: '5px' }}
+                  className="flex items-center justify-center sm:justify-start gap-2 text-sm text-white/60 hover:text-cta font-body transition-colors"
                 >
                   <Mail className="w-4 h-4" />
                   contact@hacettepeaiclub.com
@@ -189,7 +184,7 @@ export default function Footer() {
               </div>
 
               {/* Social icons */}
-              <div className="flex items-center gap-2.5 justify-center sm:justify-start max-sm:!m-0" style={{ marginTop: '3px' }}>
+              <div className="flex items-center gap-2.5 justify-center sm:justify-start">
                 {socialLinks.map(social => (
                   <a
                     key={social.label}

@@ -1,20 +1,86 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
+/* Custom social SVG icons (matching footer style) */
+function GlobeIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <line x1="2" y1="12" x2="22" y2="12" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
+  );
+}
+
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <circle cx="12" cy="12" r="5" />
+      <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function YoutubeIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+    </svg>
+  );
+}
+
+function LinkedinIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+}
+
+function XIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
+
 /* 25 sponsors total: 12 sponsors (2 Platin, 4 Altın, 6 Gümüş), 8 Fuaye, 5 Medya */
 interface Sponsor {
   name: string;
   color: string;
+  logo?: string;
   link?: string;
+  instagram?: string;
+  youtube?: string;
+  linkedin?: string;
+  x?: string;
 }
 
 const platinSponsors: Sponsor[] = [
-  { name: 'ASELSAN', color: 'from-amber-300 to-amber-500' },
+  {
+    name: 'MagicLab',
+    color: 'from-amber-300 to-amber-500',
+    logo: 'magiclab.jpg',
+    link: 'https://maglab.com.tr',
+    instagram: 'https://www.instagram.com/magiclab_game/',
+    youtube: 'https://www.youtube.com/@magiclabgames'
+  },
   { name: 'HAVELSAN', color: 'from-sky-400 to-blue-600' },
 ];
 
 const altinSponsors: Sponsor[] = [
-  { name: 'Deepix', color: 'from-violet-400 to-purple-600' },
+  {
+    name: 'ASELSAN',
+    color: 'from-violet-400 to-purple-600',
+    logo: 'aselsan.jpg',
+    link: 'https://www.aselsan.com',
+    instagram: 'https://www.instagram.com/aselsan/',
+    youtube: 'https://www.youtube.com/@aselsantv',
+    linkedin: 'https://www.linkedin.com/company/aselsan',
+    x: 'https://x.com/aselsan'
+  },
   { name: 'Türk Telekom', color: 'from-blue-400 to-cyan-500' },
   { name: 'Anadolu Grubu', color: 'from-red-400 to-orange-500' },
   { name: 'TUSAŞ', color: 'from-emerald-400 to-green-600' },
@@ -49,16 +115,90 @@ const medyaSponsors: Sponsor[] = [
 ];
 
 function SponsorPill({ sponsor }: { sponsor: Sponsor }) {
+  const hasSocials = sponsor.link || sponsor.instagram || sponsor.youtube || sponsor.linkedin || sponsor.x;
+
   return (
     <div className="flex-shrink-0 flex flex-col items-center group w-[130px] sm:w-[180px]">
-      <div className={`w-28 h-28 sm:w-40 sm:h-40 rounded-3xl bg-gradient-to-br ${sponsor.color} flex items-center justify-center text-white font-heading font-bold text-3xl sm:text-5xl shadow-sm border border-accent/15 hover:shadow-md hover:shadow-accent/5 hover:-translate-y-1 transition-all duration-300`}>
-        {sponsor.name.charAt(0)}
+      <div className={`w-28 h-28 sm:w-40 sm:h-40 rounded-3xl bg-gradient-to-br ${sponsor.color} flex items-center justify-center text-white font-heading font-bold text-3xl sm:text-5xl shadow-sm border border-accent/15 hover:shadow-md hover:shadow-accent/5 hover:-translate-y-1 transition-all duration-300 overflow-hidden relative`}>
+        {sponsor.logo ? (
+          <img
+            src={`${import.meta.env.BASE_URL}${sponsor.logo}`}
+            alt={sponsor.name}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        ) : (
+          sponsor.name.charAt(0)
+        )}
       </div>
-      <div className="flex flex-col items-center gap-2 mt-3 sm:mt-4">
+      <div className="flex flex-col items-center gap-1.5 mt-3 sm:mt-4">
         <span className="font-body font-semibold text-xs sm:text-sm text-text text-center w-full truncate px-2">{sponsor.name}</span>
-        <a href={sponsor.link || "#"} target="_blank" rel="noopener noreferrer" className="text-[10px] sm:text-xs px-4 py-1.5 rounded-md  text-text-muted  hover:bg-slate-400 hover:text-white transition-colors">
-          🔗
-        </a>
+        
+        {hasSocials ? (
+          <div className="flex items-center gap-1.5 mt-0.5 flex-wrap justify-center">
+            {sponsor.link && (
+              <a
+                href={sponsor.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1 rounded-lg text-text-muted hover:text-cta hover:bg-white/50 transition-colors"
+                aria-label={`${sponsor.name} Website`}
+                title="Website"
+              >
+                <GlobeIcon className="w-4 h-4" />
+              </a>
+            )}
+            {sponsor.instagram && (
+              <a
+                href={sponsor.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1 rounded-lg text-text-muted hover:text-pink-500 hover:bg-white/50 transition-colors"
+                aria-label={`${sponsor.name} Instagram`}
+                title="Instagram"
+              >
+                <InstagramIcon className="w-4 h-4" />
+              </a>
+            )}
+            {sponsor.youtube && (
+              <a
+                href={sponsor.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1 rounded-lg text-text-muted hover:text-red-500 hover:bg-white/50 transition-colors"
+                aria-label={`${sponsor.name} YouTube`}
+                title="YouTube"
+              >
+                <YoutubeIcon className="w-4 h-4" />
+              </a>
+            )}
+            {sponsor.linkedin && (
+              <a
+                href={sponsor.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1 rounded-lg text-text-muted hover:text-blue-500 hover:bg-white/50 transition-colors"
+                aria-label={`${sponsor.name} LinkedIn`}
+                title="LinkedIn"
+              >
+                <LinkedinIcon className="w-4 h-4" />
+              </a>
+            )}
+            {sponsor.x && (
+              <a
+                href={sponsor.x}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1 rounded-lg text-text-muted hover:text-gray-900 hover:bg-white/50 transition-colors"
+                aria-label={`${sponsor.name} X`}
+                title="X"
+              >
+                <XIcon className="w-4 h-4" />
+              </a>
+            )}
+          </div>
+        ) : (
+          <span className="h-6" />
+        )}
       </div>
     </div>
   );
@@ -118,7 +258,7 @@ export default function Sponsors() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="sponsorlar" className="py-20 sm:py-28 relative overflow-hidden w-full bg-gradient-to-b from-deep/15 to-deep/20">
+    <section id="sponsorlar" className="py-12 sm:py-28 relative overflow-hidden w-full bg-gradient-to-b from-deep/15 to-deep/20">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/60 to-transparent pointer-events-none" />
 

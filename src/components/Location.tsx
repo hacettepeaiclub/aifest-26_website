@@ -13,7 +13,7 @@ export default function Location() {
     'https://www.google.com/maps/dir//Tun%C3%A7alp+%C3%96zgen+Kongre+ve+Konferans+Merkezi,+Hacettepe+%C3%9Cniversitesi,+Ankara';
 
   return (
-    <section id="konum" className="pt-20 sm:pt-28 pb-16 px-4 sm:px-8 lg:px-16 xl:px-32 w-full relative flex flex-col items-center bg-gradient-to-b from-deep/40 to-deep/80">
+    <section id="konum" className="py-12 px-4 sm:pt-28 sm:pb-16 sm:px-8 lg:px-16 xl:px-32 w-full relative flex flex-col items-center bg-gradient-to-b from-deep/40 to-deep/80">
       <div className="absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full bg-cta/5 blur-[80px]" />
 
       <div ref={ref} className="w-full relative z-10 flex flex-col items-center">
