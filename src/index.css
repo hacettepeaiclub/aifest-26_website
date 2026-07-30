@@ -167,7 +167,7 @@ h3 {
 
 /* Mobile Edge Spacing Enforcement */
 @media (max-width: 640px) {
-  section {
+  section:not(#konusmacilar) {
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
@@ -175,5 +175,13 @@ h3 {
   /* Vision 2026 cards mobile padding */
   #vizyon .rounded-3xl {
     padding: 20px 16px !important;
+  }
+}
+
+/* Desktop Edge Spacing Enforcement */
+@media (min-width: 641px) {
+  section:not(#konusmacilar) {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
   }
 }
