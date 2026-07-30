@@ -172,6 +172,16 @@ h3 {
     padding-right: 16px !important;
   }
 
+  nav {
+    padding-left: 4px !important;
+    padding-right: 0 !important;
+  }
+
+  footer {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+
   /* Vision 2026 cards mobile padding */
   #vizyon .rounded-3xl {
     padding: 20px 16px !important;
@@ -181,6 +191,16 @@ h3 {
 /* Desktop Edge Spacing Enforcement */
 @media (min-width: 641px) {
   section:not(#konusmacilar) {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  nav {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  footer {
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
