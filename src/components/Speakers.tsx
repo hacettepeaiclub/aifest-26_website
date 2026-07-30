@@ -18,23 +18,23 @@ interface Speaker {
 }
 
 const row1Speakers: Speaker[] = [
-  { name: 'Prof. Dr. Ayşe Yılmaz', title: 'Yapay Zeka Araştırmacısı', org: 'ODTÜ', color: 'from-cta to-accent', linkedin: 'https://linkedin.com' },
-  { name: 'Dr. Emre Kaya', title: 'Makine Öğrenmesi Uzmanı', org: 'Google DeepMind', color: 'from-accent to-deep', linkedin: 'https://linkedin.com' },
-  { name: 'Zeynep Arslan', title: 'Veri Bilimi Lideri', org: 'Microsoft', color: 'from-badge to-accent', linkedin: 'https://linkedin.com' },
-  { name: 'Prof. Dr. Mehmet Öz', title: 'Doğal Dil İşleme', org: 'Hacettepe Üniversitesi', color: 'from-deep to-cta', linkedin: 'https://linkedin.com' },
-  { name: 'Selin Demir', title: 'AI Mühendisi', org: 'Meta AI', color: 'from-cta to-badge', linkedin: 'https://linkedin.com' },
-  { name: 'Dr. Burak Çelik', title: 'Robotik & Otomasyon', org: 'TUSAŞ', color: 'from-accent to-cta', linkedin: 'https://linkedin.com' },
-  { name: 'Elif Korkmaz', title: 'Bilgisayarlı Görü', org: 'ASELSAN', color: 'from-deep to-badge', linkedin: 'https://linkedin.com' },
-  { name: 'Prof. Dr. Hakan Tekin', title: 'Derin Öğrenme', org: 'İTÜ', color: 'from-cta to-deep', linkedin: 'https://linkedin.com' },
-  { name: 'Merve Şahin', title: 'NLP Araştırmacısı', org: 'Hugging Face', color: 'from-badge to-cta', linkedin: 'https://linkedin.com' },
-  { name: 'Dr. Can Özgür', title: 'Büyük Dil Modelleri', org: 'OpenAI', color: 'from-accent to-badge', linkedin: 'https://linkedin.com' },
+  { name: 'Sinem Akbal', title: 'Yapay Zeka Araştırmacısı', org: 'ODTÜ', color: 'from-cta to-accent', linkedin: 'https://linkedin.com' },
+  { name: 'Ege Eray Turan', title: 'Makine Öğrenmesi Uzmanı', org: 'Google DeepMind', color: 'from-accent to-deep', linkedin: 'https://linkedin.com' },
+  { name: 'Nilay Ekizoğlu', title: 'Veri Bilimi Lideri', org: 'Microsoft', color: 'from-badge to-accent', linkedin: 'https://linkedin.com' },
+  { name: 'Muhammet Tayyip Muslu', title: 'Doğal Dil İşleme', org: 'Hacettepe Üniversitesi', color: 'from-deep to-cta', linkedin: 'https://linkedin.com' },
+  { name: 'Emel Çabuk', title: 'AI Mühendisi', org: 'Meta AI', color: 'from-cta to-badge', linkedin: 'https://linkedin.com' },
+  { name: 'Dr. Burak Yılıdz', title: 'Robotik & Otomasyon', org: 'TUSAŞ', color: 'from-accent to-cta', linkedin: 'https://linkedin.com' },
+  { name: 'Elif Bayram', title: 'Bilgisayarlı Görü', org: 'ASELSAN', color: 'from-deep to-badge', linkedin: 'https://linkedin.com' },
+  { name: 'Prof. Dr. Ali Öztemur', title: 'Derin Öğrenme', org: 'İTÜ', color: 'from-cta to-deep', linkedin: 'https://linkedin.com' },
+  { name: 'Berivan Ayyıldız', title: 'NLP Araştırmacısı', org: 'Hugging Face', color: 'from-badge to-cta', linkedin: 'https://linkedin.com' },
+  { name: 'Seval Şahin', title: 'Büyük Dil Modelleri', org: 'OpenAI', color: 'from-accent to-badge', linkedin: 'https://linkedin.com' },
 ];
 
 const row2Speakers: Speaker[] = [
-  { name: 'Deniz Yıldırım', title: 'MLOps Uzmanı', org: 'Amazon AWS', color: 'from-deep to-accent', linkedin: 'https://linkedin.com' },
-  { name: 'Prof. Dr. Fatma Güney', title: 'Medikal Yapay Zeka', org: 'Koç Üniversitesi', color: 'from-cta to-accent', linkedin: 'https://linkedin.com' },
-  { name: 'Dr. Ahmet Yılmaz', title: 'AI Güvenliği & Etik', org: 'HAVELSAN', color: 'from-accent to-deep', linkedin: 'https://linkedin.com' },
-  { name: 'Yasemin Çevik', title: 'LLM Sistem Mimarisi', org: 'Trendyol Tech', color: 'from-badge to-cta', linkedin: 'https://linkedin.com' },
+  { name: 'Onat Yıldırım', title: 'MLOps Uzmanı', org: 'Amazon AWS', color: 'from-deep to-accent', linkedin: 'https://linkedin.com' },
+  { name: 'Atalay Gürel', title: 'Medikal Yapay Zeka', org: 'Koç Üniversitesi', color: 'from-cta to-accent', linkedin: 'https://linkedin.com' },
+  { name: 'Dr. Oğuzhan Özboyacıoğlu', title: 'AI Güvenliği & Etik', org: 'HAVELSAN', color: 'from-accent to-deep', linkedin: 'https://linkedin.com' },
+  { name: 'Emel Erol', title: 'LLM Sistem Mimarisi', org: 'Trendyol Tech', color: 'from-badge to-cta', linkedin: 'https://linkedin.com' },
   { name: 'Prof. Dr. Oğuz Ergin', title: 'Bilgisayar Mimarisi', org: 'TOBB ETÜ', color: 'from-cta to-badge', linkedin: 'https://linkedin.com' },
   { name: 'Daron Yöndem', title: 'Bulut & AI Teknik Lider', org: 'Microsoft', color: 'from-deep to-cta', linkedin: 'https://linkedin.com' },
   { name: 'Melike Palsü Kurt', title: 'Dijital Dönüşüm Uzmanı', org: 'Cumhurbaşkanlığı DDÖ', color: 'from-accent to-cta', linkedin: 'https://linkedin.com' },

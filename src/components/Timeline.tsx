@@ -10,6 +10,7 @@ const timelineEvents = [
       'TensorFlow Turkey işbirliği ile gerçekleştirdiğimiz etkinliklerde, birçok sektörden yapay zeka uzmanı ve tecrübeli profesyoneller ağırladık.',
     highlight: 'TensorFlow Turkey İşbirliği',
     colorHex: '#39B8BA', // cta
+    embedUrl: 'https://www.instagram.com/p/CXjjy24MsQU/embed',
   },
   {
     year: '2023',
@@ -17,6 +18,7 @@ const timelineEvents = [
       'TUSAŞ ve Massive Bio sponsorluğunda gerçekleştirdiğimiz etkinliklere 500\'ü aşkın katılımcı büyük ilgi gösterdi.',
     highlight: '500+ Katılımcı',
     colorHex: '#4E439B', // accent
+    embedUrl: 'https://www.instagram.com/p/Cz_77LAtD-G/embed',
   },
   {
     year: '2024',
@@ -24,6 +26,7 @@ const timelineEvents = [
       'Aselsan ve Anadolu Grubu sponsorluğunda gerçekleştirdiğimiz etkinlik, yapay zeka dünyasının en önemli isimlerini bir araya getirdi.',
     highlight: 'Rekor Katılım',
     colorHex: '#DA5D97', // badge
+    embedUrl: 'https://www.instagram.com/p/DCV_g12tv3K/embed',
   },
   {
     year: '2025',
@@ -31,6 +34,7 @@ const timelineEvents = [
       'Platin Sponsorumuz Aselsan ve Altın Sponsorumuz Deepix başta olmak üzere, teknoloji ve yapay zeka dünyasına yön veren değerli markaların destekleriyle zengin bir etkinlik gerçekleştirdik.',
     highlight: 'Genişleyen Ekosistem',
     colorHex: '#461E64', // deep
+    embedUrl: 'https://www.instagram.com/p/DRhfOuxDNsH/embed',
   },
 ];
 
@@ -64,33 +68,59 @@ const Page = forwardRef<HTMLDivElement, { event: typeof timelineEvents[0]; numbe
           <div className="relative h-14 sm:h-16 w-full shrink-0" />
 
           {/* Page Content (Opaque Paper) */}
-          <div className="p-8 flex-1 flex flex-row items-center justify-center gap-12 bg-[#f3f4f6]/45 backdrop-blur-3xl rounded-b-2xl"
-            style={{ backgroundImage: 'radial-gradient(circle at center, #ffffff 0%, transparent 100%)' }}
+          <div className="p-6 flex-1 flex flex-row items-center justify-between gap-8 bg-[#f3f4f6]/45 backdrop-blur-3xl rounded-b-2xl px-10"
+            style={{ backgroundImage: 'radial-gradient(circle at right, #ffffff 0%, transparent 50%)' }}
           >
-            {/* Left Side: Year */}
-            <div className="flex flex-col items-center justify-center min-w-[250px]">
-              <div className="text-7xl sm:text-[9rem] font-black drop-shadow-sm tracking-tighter" style={{ color: event.colorHex }}>
+            {/* Left Side: Instagram Embed or Photo Card */}
+            <div className="w-[320px] h-[360px] shrink-0 flex items-center justify-center rounded-2xl overflow-hidden shadow-lg border border-white/60 bg-white/70 relative" style={{ marginLeft: '50px' }}>
+              {event.embedUrl ? (
+                <div className="w-full h-full overflow-hidden rounded-2xl relative">
+                  <iframe
+                    src={event.embedUrl}
+                    className="w-full border-0 rounded-2xl relative"
+                    style={{ marginTop: '-56px', height: 'calc(100% + 110px)' }}
+                    title={`Instagram Post ${event.year}`}
+                    allowTransparency
+                  />
+                </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center p-6 text-center">
+                  <div className="text-6xl font-black drop-shadow-sm tracking-tighter" style={{ color: event.colorHex }}>
+                    {event.year}
+                  </div>
+                  <span className="text-xs font-semibold text-text-muted mt-2">AI Fest Hatıraları</span>
+                </div>
+              )}
+            </div>
+
+            {/* Right Side: Info Block */}
+            <div className="flex flex-col items-start justify-center text-left flex-1 max-w-lg">
+              {/* Year at Top Left */}
+              <div className="text-5xl sm:text-6xl font-black mb-6 tracking-tighter drop-shadow-sm" style={{ color: event.colorHex, marginTop: '0px' }}>
                 {event.year}
               </div>
-            </div>
 
-            {/* Right Side: Info */}
-            <div className="flex flex-col items-start justify-center text-left flex-1 max-w-lg">
-              <p className="text-2xl sm:text-2xl text-text-muted font-body mb-5 leading-relaxed">
+              {/* Description */}
+              <p className="text-xl sm:text-lg text-text-muted font-body mb-2 leading-relaxed"
+                style={{ marginRight: '30px', marginTop: '50px' }}>
                 {event.description}
               </p>
-              <div className="text-lg sm:text-2xl font-bold py-2 px-5 rounded-xl bg-white border border-gray-200 shadow-sm" style={{ color: event.colorHex }}>
-                ✨ {event.highlight}
-              </div>
             </div>
           </div>
 
-          {/* Page Number */}
-          <div className="absolute bottom-4 right-6 text-gray-300 font-body text-sm font-semibold">
-            Sayfa {number}
+          {/* Page Footer */}
+          <div className="absolute bottom-4 left-8 right-8 flex justify-between text-gray-400 font-body text-sm font-semibold pointer-events-none">
+            <div className="flex items-center" style={{ marginLeft: '-30px' }}>
+              <span>← Geri</span>
+            </div>
+            <div className="flex items-center">
+              <span className="text-gray-300">Sayfa {number}</span>
+              <span className="text-gray-500 mx-2" style={{ marginRight: '1px' }}></span>
+              <span>|İleri →</span>
+            </div>
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 );
@@ -115,7 +145,7 @@ function EBookFlip({ scale }: { scale: number }) {
           }
         }
       }
-    }, 5000);
+    }, 25000);
     return () => clearInterval(timer);
   }, []);
 
