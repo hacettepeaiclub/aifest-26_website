@@ -13,7 +13,7 @@ export default function Location() {
     'https://www.google.com/maps/dir//Tun%C3%A7alp+%C3%96zgen+Kongre+ve+Konferans+Merkezi,+Hacettepe+%C3%9Cniversitesi,+Ankara';
 
   return (
-    <section id="konum" className="py-12 px-4 sm:pt-28 sm:pb-16 sm:px-8 lg:px-16 xl:px-32 w-full relative flex flex-col items-center bg-gradient-to-b from-deep/40 to-deep/80">
+    <section id="konum" className="py-12 px-4 sm:pt-28 sm:pb-16 sm:px-8 lg:px-16 xl:px-32 w-full relative flex flex-col items-center bg-gradient-to-b from-deep/40 to-deep/45">
       <div className="absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full bg-cta/5 blur-[80px]" />
 
       <div ref={ref} className="w-full relative z-10 flex flex-col items-center">
@@ -99,10 +99,10 @@ export default function Location() {
               href={googleMapsDirectionsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-center gap-3 w-full p-5 sm:p-6 rounded-3xl bg-deep text-white font-body font-bold text-lg transition-all duration-300 hover:bg-deep-light hover:shadow-2xl hover:shadow-deep/30"
+              className="group flex items-center justify-center gap-3 w-full p-4 sm:p-5 rounded-2xl bg-gray-200/90 hover:bg-gray-300 text-text font-body font-bold text-base sm:text-lg border border-gray-300/80 shadow-sm transition-all duration-300 hover:shadow-md"
               style={{ marginBottom: '5px' }}
             >
-              <Navigation className="w-6 h-6 group-hover:rotate-45 transition-transform duration-300" />
+              <Navigation className="w-5 h-5 sm:w-6 sm:h-6 text-accent group-hover:rotate-45 transition-transform duration-300" />
               <span>Yol Tarifi Al</span>
             </a>
           </motion.div>

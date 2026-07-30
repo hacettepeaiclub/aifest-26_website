@@ -9,6 +9,7 @@ import Vision2026 from './components/Vision2026';
 import Sponsors from './components/Sponsors';
 import Stakeholders from './components/Stakeholders';
 import Location from './components/Location';
+import ProgramSchedule from './components/ProgramSchedule';
 import Footer from './components/Footer';
 
 export default function App() {
@@ -19,7 +20,7 @@ export default function App() {
       <Navbar onMenuToggle={() => setMenuOpen(!menuOpen)} isMenuOpen={menuOpen} />
       <SideDrawer isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
 
-      <main className="w-full overflow-x-hidden">
+      <main className="w-full overflow-x-hidden flex flex-col">
         <div style={{ marginTop: '0px' }}><Hero /></div>
         <div style={{ marginBottom: '0px' }}><About /></div>
         <div style={{ marginTop: '0px', marginBottom: '0px' }}><Vision2026 /></div>
@@ -28,9 +29,9 @@ export default function App() {
         <div style={{ marginTop: '0px', marginBottom: '0px' }}><Stakeholders /></div>
         <div style={{ marginTop: '0px', marginBottom: '0px' }}><Timeline /></div>
         <div style={{ marginTop: '0px', marginBottom: '0px' }}><Location /></div>
+        <div style={{ marginTop: '0px', marginBottom: '0px' }}><ProgramSchedule /></div>
+        <Footer />
       </main>
-
-      <Footer />
     </div>
   );
 }

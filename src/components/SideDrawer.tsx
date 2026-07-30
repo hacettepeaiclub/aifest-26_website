@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Info, Users, Award, Handshake, Calendar, Archive, ChevronDown, X } from 'lucide-react';
+import { Home, Info, Users, Award, Handshake, Calendar, Clock, Archive, ChevronDown, X } from 'lucide-react';
 import { useState } from 'react';
 
 interface SideDrawerProps {
@@ -13,6 +13,7 @@ const menuItems = [
   { icon: Users, label: 'Konuşmacılar', href: '#konusmacilar' },
   { icon: Award, label: 'Sponsorlar', href: '#sponsorlar' },
   { icon: Handshake, label: 'Paydaşlar', href: '#paydaslar' },
+  { icon: Clock, label: 'Program Akışı', href: '#programakisi' },
   { icon: Calendar, label: "AI Fest Yolculuğu", href: '#tarihce' },
 ];
 

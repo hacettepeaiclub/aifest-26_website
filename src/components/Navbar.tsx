@@ -83,13 +83,19 @@ export default function Navbar({ onMenuToggle, isMenuOpen }: NavbarProps) {
             </a>
           </div>
 
-          {/* Right: CTA + Contact */}
+          {/* Right: CTA + Contact + Takvim */}
           <div className="flex items-center gap-2 sm:gap-4">
             <a
               href="#iletisim"
               className={`inline-flex text-[11px] sm:text-base font-body font-semibold drop-shadow-sm hover:text-cta transition-colors duration-300 ${scrolled ? 'text-black' : 'text-white'}`}
             >
               İletişim
+            </a>
+            <a
+              href="#programakisi"
+              className={`inline-flex text-[11px] sm:text-base font-body font-semibold drop-shadow-sm hover:text-cta transition-colors duration-300 ${scrolled ? 'text-black' : 'text-white'}`}
+            >
+              Takvim
             </a>
             <a
               id="nav-register-btn"
