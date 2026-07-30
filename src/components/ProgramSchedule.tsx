@@ -119,7 +119,7 @@ export default function ProgramSchedule() {
     <section
       ref={sectionRef}
       id="programakisi"
-      className="py-12 px-4 sm:py-20 sm:px-6 w-full relative flex flex-col items-center bg-gradient-to-b from-deep/45 to-deep/55 overflow-hidden"
+      className="py-12 px-4 sm:py-20 sm:px-6 w-full relative flex flex-col items-center bg-transparent overflow-hidden"
     >
       {/* Background glow blobs */}
       <div className="absolute top-1/4 left-10 w-[350px] h-[350px] rounded-full bg-cta/10 blur-[120px] pointer-events-none" />

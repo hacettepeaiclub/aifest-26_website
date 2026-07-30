@@ -110,7 +110,7 @@ export default function About() {
   ];
 
   return (
-    <section id="hakkinda" className="py-12 px-4 sm:py-28 sm:px-10 lg:px-20 xl:px-36 w-full relative flex flex-col items-center bg-gradient-to-b from-deep/10 to-deep/5">
+    <section id="hakkinda" className="py-12 px-4 sm:py-28 sm:px-10 lg:px-20 xl:px-36 w-full relative flex flex-col items-center bg-transparent">
       {/* Background accent */}
       <div className="absolute top-0 right-0 w-[300px] h-[300px] rounded-full bg-cta/5 blur-[80px]" />
 

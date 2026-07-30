@@ -258,9 +258,7 @@ export default function Sponsors() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="sponsorlar" className="py-12 sm:py-28 relative overflow-hidden w-full bg-gradient-to-b from-deep/15 to-deep/20">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/60 to-transparent pointer-events-none" />
+    <section id="sponsorlar" className="py-12 sm:py-28 relative overflow-hidden w-full bg-transparent">
 
       <div ref={ref} className="relative z-10 w-full">
         {/* Section header */}

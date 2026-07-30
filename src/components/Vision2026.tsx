@@ -137,7 +137,7 @@ export default function Vision2026() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="vizyon" className="py-12 px-4 sm:py-28 sm:px-8 lg:px-16 xl:px-32 w-full relative flex flex-col items-center bg-gradient-to-b from-deep/5 to-deep/10">
+    <section id="vizyon" className="py-12 px-4 sm:py-28 sm:px-8 lg:px-16 xl:px-32 w-full relative flex flex-col items-center bg-transparent">
       {/* Background blobs */}
       <div className="absolute top-1/4 right-0 w-[400px] h-[400px] rounded-full bg-cta/5 blur-[100px]" />
       <div className="absolute bottom-1/4 left-0 w-[300px] h-[300px] rounded-full bg-accent/5 blur-[80px]" />

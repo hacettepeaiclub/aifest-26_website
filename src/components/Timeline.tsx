@@ -219,7 +219,7 @@ export default function Timeline() {
     <section
       ref={sectionRef}
       id="tarihce"
-      className="relative w-full py-12 px-[7px] sm:py-28 sm:px-8 lg:px-16 overflow-hidden bg-gradient-to-b from-deep/30 to-deep/40"
+      className="relative w-full py-12 px-[7px] sm:py-28 sm:px-8 lg:px-16 overflow-hidden bg-transparent"
     >
       {/* Background glow blobs */}
       <div className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full bg-cta/10 blur-[150px]" />

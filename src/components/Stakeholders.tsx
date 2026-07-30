@@ -36,7 +36,7 @@ export default function Stakeholders() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="paydaslar" className="py-24 px-4 sm:py-28 sm:px-8 lg:px-16 xl:px-32 w-full relative flex flex-col items-center bg-gradient-to-b from-deep/20 to-deep/30">
+    <section id="paydaslar" className="py-24 px-4 sm:py-28 sm:px-8 lg:px-16 xl:px-32 w-full relative flex flex-col items-center bg-transparent">
       <div className="absolute top-0 left-1/4 w-[300px] h-[300px] rounded-full bg-badge/5 blur-[80px]" />
 
       <div ref={ref} className="w-full relative z-10 flex flex-col items-center">
