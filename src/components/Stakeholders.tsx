@@ -74,7 +74,7 @@ export default function Stakeholders() {
                   <img
                     src={`${import.meta.env.BASE_URL}${partner.logo}`}
                     alt={partner.name}
-                    className="w-16 h-16 sm:w-20 sm:h-20 object-contain mb-8 sm:mb-4 group-hover:scale-110 transition-transform duration-300"
+                    className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-full mb-8 sm:mb-4 group-hover:scale-110 transition-transform duration-300"
                     style={{ marginTop: '20px', marginBottom: '6px' }}
                   />
                 ) : (

@@ -76,10 +76,10 @@ const Page = forwardRef<HTMLDivElement, { event: typeof timelineEvents[0]; numbe
 
             {/* Right Side: Info */}
             <div className="flex flex-col items-start justify-center text-left flex-1 max-w-lg">
-              <p className="text-base sm:text-xl text-text-muted font-body mb-5 leading-relaxed">
+              <p className="text-2xl sm:text-2xl text-text-muted font-body mb-5 leading-relaxed">
                 {event.description}
               </p>
-              <div className="text-sm sm:text-base font-bold py-2 px-5 rounded-xl bg-white border border-gray-200 shadow-sm" style={{ color: event.colorHex }}>
+              <div className="text-lg sm:text-2xl font-bold py-2 px-5 rounded-xl bg-white border border-gray-200 shadow-sm" style={{ color: event.colorHex }}>
                 ✨ {event.highlight}
               </div>
             </div>
@@ -131,69 +131,69 @@ function EBookFlip({ scale }: { scale: number }) {
         }}
       >
         {/* Stationary Binding Assembly */}
-      <div className="absolute top-[-6px] left-0 right-0 z-10 pointer-events-none flex flex-col items-center">
-        {/* Stationary Colored Header (Modern Binding Strip) */}
-        <div
-          className="relative h-14 sm:h-16 w-full shadow-inner mt-[6px]"
-          style={{
-            backgroundColor: timelineEvents[currentPage]?.colorHex || timelineEvents[0].colorHex,
-            backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 100%)',
-            transition: 'background-color 0.5s ease-in-out'
-          }}
-        >
-          <div className="absolute bottom-2 left-4 right-4 border-b-2 border-white/20 border-dashed opacity-50" />
+        <div className="absolute top-[-6px] left-0 right-0 z-10 pointer-events-none flex flex-col items-center">
+          {/* Stationary Colored Header (Modern Binding Strip) */}
+          <div
+            className="relative h-14 sm:h-16 w-full shadow-inner mt-[6px]"
+            style={{
+              backgroundColor: timelineEvents[currentPage]?.colorHex || timelineEvents[0].colorHex,
+              backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 100%)',
+              transition: 'background-color 0.5s ease-in-out'
+            }}
+          >
+            <div className="absolute bottom-2 left-4 right-4 border-b-2 border-white/20 border-dashed opacity-50" />
+          </div>
+
+          {/* Stationary Metal Rings Overlay */}
+          <div className="absolute top-0 left-0 right-0 flex justify-evenly px-12">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((ring) => (
+              <div key={`static-ring-${ring}`} className="relative flex flex-col items-center">
+                {/* 3D Metallic Ring */}
+                <div
+                  className="w-[14px] h-[40px] rounded-b-[7px] border-x border-b border-black/20"
+                  style={{
+                    background: 'linear-gradient(90deg, #737373 0%, #d4d4d8 25%, #f4f4f5 50%, #a1a1aa 75%, #52525b 100%)',
+                    boxShadow: 'inset -2px -2px 4px rgba(0,0,0,0.4), inset 2px 2px 4px rgba(255,255,255,0.8), 2px 4px 6px rgba(0,0,0,0.3)'
+                  }}
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Stationary Metal Rings Overlay */}
-        <div className="absolute top-0 left-0 right-0 flex justify-evenly px-12">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((ring) => (
-            <div key={`static-ring-${ring}`} className="relative flex flex-col items-center">
-              {/* 3D Metallic Ring */}
-              <div
-                className="w-[14px] h-[40px] rounded-b-[7px] border-x border-b border-black/20"
-                style={{
-                  background: 'linear-gradient(90deg, #737373 0%, #d4d4d8 25%, #f4f4f5 50%, #a1a1aa 75%, #52525b 100%)',
-                  boxShadow: 'inset -2px -2px 4px rgba(0,0,0,0.4), inset 2px 2px 4px rgba(255,255,255,0.8), 2px 4px 6px rgba(0,0,0,0.3)'
-                }}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* 
+        {/* 
         Rotate the entire FlipBook 90 degrees.
         This moves the left-bound spine to the TOP, creating a bottom-to-top calendar flip!
       */}
-      <div
-        style={{
-          width: PAGE_HEIGHT,
-          height: PAGE_WIDTH,
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%) rotate(90deg)'
-        }}
-        className="shadow-2xl rounded-b-2xl z-20"
-      >
-        {/* @ts-ignore */}
-        <HTMLFlipBook
-          ref={flipBook}
-          width={PAGE_HEIGHT}
-          height={PAGE_WIDTH}
-          size="fixed"
-          showCover={false}
-          mobileScrollSupport={false} // Disabled because swipe directions are 90deg offset
-          usePortrait={true}
-          className="ebook-flipbook"
-          onFlip={(e: any) => setCurrentPage(e.data)}
+        <div
+          style={{
+            width: PAGE_HEIGHT,
+            height: PAGE_WIDTH,
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) rotate(90deg)'
+          }}
+          className="shadow-2xl rounded-b-2xl z-20"
         >
-          {timelineEvents.map((event, i) => (
-            <Page key={event.year} event={event} number={i + 1} />
-          ))}
           {/* @ts-ignore */}
-        </HTMLFlipBook>
-      </div>
+          <HTMLFlipBook
+            ref={flipBook}
+            width={PAGE_HEIGHT}
+            height={PAGE_WIDTH}
+            size="fixed"
+            showCover={false}
+            mobileScrollSupport={false} // Disabled because swipe directions are 90deg offset
+            usePortrait={true}
+            className="ebook-flipbook"
+            onFlip={(e: any) => setCurrentPage(e.data)}
+          >
+            {timelineEvents.map((event, i) => (
+              <Page key={event.year} event={event} number={i + 1} />
+            ))}
+            {/* @ts-ignore */}
+          </HTMLFlipBook>
+        </div>
       </div>
     </div>
   );
