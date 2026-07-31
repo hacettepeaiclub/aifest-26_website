@@ -72,7 +72,7 @@ const Page = forwardRef<HTMLDivElement, { event: typeof timelineEvents[0]; numbe
             style={{ backgroundImage: 'radial-gradient(circle at right, #ffffff 0%, transparent 50%)' }}
           >
             {/* Left Side: Instagram Embed or Photo Card */}
-            <div className="w-[320px] h-[360px] shrink-0 flex items-center justify-center rounded-2xl overflow-hidden shadow-lg border border-white/60 bg-white/70 relative" style={{ marginLeft: '50px' }}>
+            <div className="w-[320px] h-[360px] shrink-0 flex items-center justify-center rounded-2xl overflow-hidden shadow-lg border border-white/60 bg-white/70 relative" style={{ marginLeft: '80px', marginTop: '-10px' }}>
               {event.embedUrl ? (
                 <div className="w-full h-full overflow-hidden rounded-2xl relative">
                   <iframe
@@ -164,11 +164,10 @@ function EBookFlip({ scale }: { scale: number }) {
         <div className="absolute top-[-6px] left-0 right-0 z-10 pointer-events-none flex flex-col items-center">
           {/* Stationary Colored Header (Modern Binding Strip) */}
           <div
-            className="relative h-14 sm:h-16 w-full shadow-inner mt-[6px]"
+            className="relative h-14 rounded-2xl sm:h-16 w-full shadow-inner mt-[6px]"
             style={{
-              backgroundColor: timelineEvents[currentPage]?.colorHex || timelineEvents[0].colorHex,
-              backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 100%)',
-              transition: 'background-color 0.5s ease-in-out'
+              backgroundColor: '#0000007d', // Elegant, modern static dark zinc
+              backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.3) 100%)',
             }}
           >
             <div className="absolute bottom-2 left-4 right-4 border-b-2 border-white/20 border-dashed opacity-50" />
@@ -268,7 +267,7 @@ export default function Timeline() {
             Yolculuğu
           </span>
         </h2>
-        <p className="text-text-muted italic font-body text-base sm:text-lg max-w-xl text-center">
+        <p className="text-text-muted italic font-body text-base sm:text-lg max-w-xl text-center" style={{ marginBottom: '1rem' }}>
           Sayfalarca başarıyla dolu, <br /> her yıl büyüyen hikâyemiz 2021'den bugüne...
         </p>
       </motion.div>

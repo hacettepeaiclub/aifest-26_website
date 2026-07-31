@@ -120,7 +120,7 @@ export default function Hero() {
           className="mt-2 sm:mt-4 text-xs sm:text-sm text-white/41 font-body font-light"
           style={{ marginBottom: '-30px' }}
         >
-          Hacettepe Üniversitesi Yapay Zeka Topluluğu · 2018'den beri
+          Hacettepe Üniversitesi Yapay Zeka Topluluğu · #AI4All
         </motion.p>
 
         {/* 3D Countdown */}

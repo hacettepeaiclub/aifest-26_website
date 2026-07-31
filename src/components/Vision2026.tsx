@@ -22,7 +22,7 @@ const goals = [
     subtitle: 'Deneyim Pazarlaması',
     description:
       'Şirketlerimizin teknik güçlerini ve kariyer olanaklarını sadece sahne sunumlarıyla değil; fuaye alanındaki özel stant etkinlikleri, anlık mini-case yarışmaları ve uygulamalı workshop\'lar ile doğrudan deneyimleyebilirsin. Belli mi olur belki de bir staj ayarlarsın.',
-    tags: ['Fuaye Standları', 'Mini-Case', 'Workshop'],
+    tags: ['Fuaye Standları', 'Mini-Caseler', 'Workshoplar'],
     color: 'from-accent to-gray',
     borderColor: 'border-accent/20 hover:border-accent/40',
     bgColor: 'to-accent/95',
@@ -35,7 +35,7 @@ const goals = [
     subtitle: 'Çok Sesli Bir Gençlik Zirvesi',
     description:
       'Çeşitli öğrenci topluluklarıyla stratejik ortaklıklar kurarak, etkinliğin kampüs içi reklam ve tanıtım yayılımını maksimuma çıkarmak; iş birliği yaptığımız topluluklara fuaye alanında özel stant açma imkânı tanıyarak AI Fest\'i çok sesli bir gençlik zirvesine dönüştürürerek farklı üniversiteden öğrenciler ile tanışman için olanak sağlıyoruz.',
-    tags: ['Stratejik İşbirlikleri', 'Fuaye Standı', 'Tanıtım'],
+    tags: ['Stratejik İşbirlikleri', 'Çeşitli Topluluklar', 'Şirket Tanıtımları'],
     color: 'from-gray to-badge',
     borderColor: 'border-badge/20 hover:border-badge/20',
     bgColor: 'to-badge/95',
@@ -68,9 +68,9 @@ function GoalCard({ goal, index, isInView }: { goal: typeof goals[0]; index: num
             <h3 className="text-xl mb-2">{goal.title}</h3>
             <p className="text-lg">{goal.subtitle}</p>
             <p className="text-sm sm:text-base mb-4 leading-relaxed">{goal.description}</p>
-            <div className="flex flex-wrap gap-2 mt-[35px]">
+            <div className="flex flex-wrap gap-3 mt-[45px]">
               {goal.tags.map(tag => (
-                <span key={tag} className="px-4 py-1.5 rounded-full border border-transparent text-xs sm:text-sm font-medium">
+                <span key={tag} className="inline-block px-8 py-3 rounded-md border border-transparent text-xs sm:text-sm font-medium">
                   {tag}
                 </span>
               ))}
@@ -83,24 +83,26 @@ function GoalCard({ goal, index, isInView }: { goal: typeof goals[0]; index: num
           className={`absolute inset-0 p-6 sm:p-10 rounded-3xl bg-[#f3f4f6]/45  border ${goal.borderColor} overflow-hidden flex flex-col items-center justify-center shadow-lg backdrop-blur-3xl`}
           style={{ backfaceVisibility: 'hidden' }}
         >
-          <div className={`absolute top-0 left-0 right-0 h-1.5 bg-[#f3f4f6]/45`} />
+          <div className={`absolute top-0 left-0 right-0 h-[1px] bg-[#f3f4f6]/45`} />
+
+          <div className={`absolute top-5 left-3 sm:top-4 sm:left-3 inline-flex items-center justify-center w-10 h-10 rounded-2xl bg-gradient-to-br ${goal.color} text-white shadow-md`}>
+            <goal.icon className="w-5 h-5" />
+          </div>
 
           {/* Inner Content Wrapper */}
           <div className="flex flex-col items-start text-left w-full max-w-sm p-4">
-            <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${goal.color} text-white mb-6 shadow-md`} style={{ marginBottom: '10px' }}>
-              <goal.icon className="w-7 h-7" />
-            </div>
+            <div className="w-14 h-14 mb-6" style={{ marginBottom: '10px' }} />
 
             <h2 className="font-heading font-bold text-text text-2xl mb-8">{goal.title}</h2>
             <p className="text-md italic text-slate-800 font-body font-light" style={{ marginBottom: '8px', marginTop: '6px' }}>
               {goal.subtitle}
             </p>
 
-            <div className="flex items-center flex-wrap gap-2 mt-[35px]">
+            <div className="flex items-center flex-wrap gap-3 mt-[45px]">
               {goal.tags.map(tag => (
                 <span
                   key={tag}
-                  className={`px-4 py-1.5 rounded-md backdrop-blur-2xl border border-white/10 bg-gradient-to-br from-gray-50 to-gray-300/50 text-amber-950 font-medium text-xs sm:text-sm shadow-md transition-all duration-300 hover:bg-white/80 hover:text-text hover:-translate-y-0.5`}
+                  className={`inline-block px-8 py-3 rounded-md backdrop-blur-2xl border border-white/5 bg-gradient-to-br from-white-50 to-white-300/50 text-slate-800 font-bold text-xs sm:text-md shadow-md transition-all duration-300 hover:bg-white/80 hover:text-text hover:-translate-y-0.5`}
                 >
                   {tag}
                 </span>
@@ -116,7 +118,7 @@ function GoalCard({ goal, index, isInView }: { goal: typeof goals[0]; index: num
           className={`absolute inset-0 p-6 sm:p-10 rounded-3xl bg-[#f3f4f6]/45 border ${goal.borderColor} overflow-hidden flex flex-col items-center justify-center shadow-lg backdrop-blur-3xl`}
           style={{ backfaceVisibility: 'hidden', transform: 'rotateX(180deg)' }}
         >
-          <div className={`absolute top-0 left-0 right-0 h-1.5 bg-[#f3f4f6]/45}`} />
+          <div className={`absolute top-0 left-0 right-0 h-[1px] bg-[#f3f4f6]/45`} />
 
           {/* Inner Content Wrapper */}
           <div className="flex flex-col items-start text-left w-full max-w-sm p-4">
@@ -156,9 +158,9 @@ export default function Vision2026() {
               Sizi Neler Bekliyor?
             </span>
           </h2>
-          <p className="mt-4 text-text-muted italic text-md font-body max-w-2xl text-center text-base sm:text-md">
+          <p className="mt-4 text-text-muted italic text-md font-body max-w-2xl text-center text-base sm:text-md" style={{ marginBottom: '1rem' }}>
             Her yıl katılımcı sayımızı ve çeşitliliğimizi büyütmeye devam ediyoruz.
-            <br />Üç stratejik hedef üzerinden ilerliyoruz.
+            <br />Üç ana hedef üzerinden ilerliyoruz.
           </p>
         </motion.div>
 

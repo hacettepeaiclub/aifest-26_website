@@ -68,7 +68,7 @@ export default function SideDrawer({ isOpen, onClose }: SideDrawerProps) {
                 </div>
                 <button
                   onClick={onClose}
-                  className="p-3 text-text-muted hover:bg-accent/10 rounded-xl transition-colors" style={{ marginRight: '5px' }}
+                  className="p-3 text-text-muted hover:bg-accent/10 rounded-xl transition-colors" style={{ marginRight: '15px' }}
                   aria-label="Menüyü Kapat"
                 >
                   <X className="w-8 h-8" />
@@ -144,16 +144,13 @@ export default function SideDrawer({ isOpen, onClose }: SideDrawerProps) {
             </div>
 
             {/* Bottom CTA */}
-            <div className="px-6 mt-auto pb-6">
+            <div className="flex justify-center" style={{ marginTop: '350px' }}>
               <a
                 href="#"
                 onClick={(e) => { e.preventDefault(); alert('Kayıtlar yakında başlayacak. Takipte kal!'); onClose(); }}
-                className="flex items-center justify-center gap-2 w-full px-6 py-3.5 bg-cta text-white font-body font-semibold text-base rounded-xl hover:bg-cta-hover transition-all duration-300 shadow-md shadow-cta/25 hover:shadow-lg hover:shadow-cta/35 active:scale-98"
+                className="flex items-center justify-center gap-2 w-[120px] py-3.5 bg-cta text-white font-body font-semibold text-base rounded-xl hover:bg-cta-hover transition-all duration-300 shadow-md shadow-cta/25 hover:shadow-lg hover:shadow-cta/35 active:scale-98"
               >
                 <span>Kayıt Ol</span>
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
               </a>
             </div>
           </motion.aside>

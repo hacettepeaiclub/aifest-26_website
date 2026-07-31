@@ -23,12 +23,12 @@ const partners = [
     logo: 'ieee_atilim.jpg',
     instagram: 'https://www.instagram.com/ieeeatilim'
   },
-  { name: 'ACM Hacettepe', color: 'from-indigo-400 to-purple-500' },
-  { name: 'Yazılım Topluluğu', color: 'from-green-400 to-emerald-500' },
-  { name: 'Robotik Topluluğu', color: 'from-orange-400 to-red-500' },
-  { name: 'Siber Güvenlik Topluluğu', color: 'from-gray-500 to-slate-700' },
-  { name: 'Veri Bilimi Kulübü', color: 'from-cyan-400 to-teal-500' },
-  { name: 'Girişimcilik Topluluğu', color: 'from-amber-400 to-orange-500' },
+  // { name: 'ACM Hacettepe', color: 'from-indigo-400 to-purple-500' },
+  // { name: 'Yazılım Topluluğu', color: 'from-green-400 to-emerald-500' },
+  // { name: 'Robotik Topluluğu', color: 'from-orange-400 to-red-500' },
+  // { name: 'Siber Güvenlik Topluluğu', color: 'from-gray-500 to-slate-700' },
+  // { name: 'Veri Bilimi Kulübü', color: 'from-cyan-400 to-teal-500' },
+  // { name: 'Girişimcilik Topluluğu', color: 'from-amber-400 to-orange-500' },
 ];
 
 export default function Stakeholders() {
@@ -59,14 +59,14 @@ export default function Stakeholders() {
         </motion.div>
 
         {/* Partners grid */}
-        <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8 sm:gap-6 lg:gap-8" style={{ marginBottom: '20px' }}>
+        <div className="w-full flex flex-wrap justify-center gap-8 sm:gap-6 lg:gap-8" style={{ marginBottom: '20px' }}>
           {partners.map((partner, i) => (
             <motion.div
               key={partner.name}
               initial={{ y: 30, opacity: 0, scale: 0.95 }}
               animate={isInView ? { y: 0, opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.15 + i * 0.08 }}
-              className="group"
+              className="group w-[160px] sm:w-[200px] lg:w-[240px]"
             >
               <div className="relative px-8 pb-12 pt-20 sm:px-6 sm:pb-8 sm:pt-12 rounded-3xl bg-[#f3f4f6]/45 backdrop-blur-3xl border border-white/60 hover:bg-white/60 hover:border-white/80 transition-all duration-300 hover:shadow-xl hover:shadow-accent/5 hover:-translate-y-1 text-center overflow-hidden h-full flex flex-col items-center justify-center">
 
@@ -83,7 +83,7 @@ export default function Stakeholders() {
                   </div>
                 )}
 
-                <p className="font-body font-medium text-sm sm:text-lg text-text leading-tight">
+                <p className="font-body font-medium text-sm sm:text-lg text-text leading-tight" style={{ marginBottom: '4px' }}>
                   {partner.name.split('\n').map((line, idx, arr) => (
                     <span key={idx}>
                       {line}
@@ -97,7 +97,7 @@ export default function Stakeholders() {
                     href={partner.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-6 sm:mt-3 text-black hover:text-cta transition-colors duration-300"
+                    className="mt-6 sm:mt-3 text-black hover:text-cta transition-colors duration-300" style={{ marginBottom: '4px' }}
                     aria-label="Instagram"
                   >
                     <InstagramIcon className="w-5 h-5" />

@@ -101,6 +101,7 @@ export default function ProgramSchedule() {
 
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const SHOW_SCHEDULE = false;
 
   const currentSchedule = activeDay === 1 ? day1Schedule : day2Schedule;
 
@@ -144,111 +145,133 @@ export default function ProgramSchedule() {
           </p>
         </motion.div>
 
-        {/* Day Selector Buttons */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={isInView ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex items-center gap-3 p-1.5 rounded-md bg-[#f3f4f6]/60 backdrop-blur-xl border border-white/60 shadow-inner mb-8 sm:mb-12"
-        >
-          <button
-            onClick={() => setActiveDay(1)}
-            className={`px-6 py-2.5 sm:px-8 sm:py-3 rounded-md font-heading font-semibold text-sm sm:text-base transition-all duration-300 ${activeDay === 1
-              ? 'bg-accent text-white shadow-lg shadow-accent/30 scale-105'
-              : 'text-text-muted hover:text-text hover:bg-white/40'
-              }`}
-          >
-            1. Gün
-          </button>
-          <button
-            onClick={() => setActiveDay(2)}
-            className={`px-6 py-2.5 sm:px-8 sm:py-3 rounded-md font-heading font-semibold text-sm sm:text-base transition-all duration-300 ${activeDay === 2
-              ? 'bg-accent text-white shadow-lg shadow-accent/30 scale-105'
-              : 'text-text-muted hover:text-text hover:bg-white/40'
-              }`}
-          >
-            2. Gün
-          </button>
-        </motion.div>
-
-        {/* Schedule Grid Container */}
-        <div className="w-full max-w-5xl overflow-hidden rounded-2xl bg-[#f3f4f6]/45 backdrop-blur-3xl border border-white/60 shadow-xl">
-          {/* Header Row (Desktop) */}
-          <div className="hidden md:grid md:grid-cols-12 gap-4 px-6 py-4 bg-white/40 border-b border-white/40 font-heading font-bold text-xs sm:text-sm text-text-muted uppercase tracking-wider">
-            <div className="col-span-2 text-center flex items-center justify-center gap-2">
-              <Clock className="w-4 h-4 text-accent" />
-              <span>Saat</span>
-            </div>
-            <div className="col-span-4 flex items-center gap-2">
-              <BookOpen className="w-4 h-4 text-accent" />
-              <span>Konu</span>
-            </div>
-            <div className="col-span-3 flex items-center gap-2">
-              <User className="w-4 h-4 text-accent" />
-              <span>Konuşmacı</span>
-            </div>
-            <div className="col-span-3 text-center flex items-center justify-center gap-2">
-              <Sparkles className="w-4 h-4 text-cta" />
-              <span>Çekiliş Katılımı</span>
-            </div>
-          </div>
-
-          {/* Animated Schedule Items */}
-          <AnimatePresence mode="wait">
+        {/* Schedule Content */}
+        {SHOW_SCHEDULE ? (
+          <>
+            {/* Day Selector Buttons */}
             <motion.div
-              key={activeDay}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.4 }}
-              className="divide-y divide-white/40"
+              initial={{ y: 20, opacity: 0 }}
+              animate={isInView ? { y: 0, opacity: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="flex items-center gap-3 p-1.5 rounded-md bg-[#f3f4f6]/60 backdrop-blur-xl border border-white/60 shadow-inner mb-8 sm:mb-12"
             >
-              {currentSchedule.map((item) => (
-                <div
-                  key={item.id}
-                  className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 p-5 sm:p-6 hover:bg-white/40 transition-colors duration-200 items-center"
-                >
-                  {/* Column 1: SAAT */}
-                  <div className="md:col-span-2 flex items-center justify-center">
-                    <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-accent/15 text-accent whitespace-nowrap">
-                      {item.time}
-                    </span>
-                  </div>
-
-                  {/* Column 2: KONU */}
-                  <div className="md:col-span-4 flex flex-col items-start">
-                    <h3 className="font-heading font-semibold text-text text-sm sm:text-base leading-snug">
-                      {item.topic}
-                    </h3>
-                  </div>
-
-                  {/* Column 3: Konuşmacı */}
-                  <div className="md:col-span-3 flex flex-col items-start">
-                    <span className="font-body font-medium text-xs sm:text-sm text-text">
-                      {item.speaker}
-                    </span>
-                    {item.speakerTitle && (
-                      <span className="font-body text-xs text-text-muted">
-                        {item.speakerTitle}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Column 4: Çekiliş Butonu */}
-                  <div className="md:col-span-3 flex justify-center items-center mt-2 md:mt-0">
-                    <button
-                      onClick={() => setSelectedRaffle(item)}
-                      className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-cta to-accent text-white font-body font-semibold text-xs leading-normal shadow-md shadow-cta/20 hover:shadow-lg hover:shadow-cta/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 text-center w-full md:w-auto"
-                    >
-                      <Gift className="w-4 h-4 shrink-0" />
-                      <span>Çekiliş Formu</span>
-                    </button>
-                  </div>
-                </div>
-              ))}
+              <button
+                onClick={() => setActiveDay(1)}
+                className={`px-6 py-2.5 sm:px-8 sm:py-3 rounded-md font-heading font-semibold text-sm sm:text-base transition-all duration-300 ${activeDay === 1
+                  ? 'bg-accent text-white shadow-lg shadow-accent/30 scale-105'
+                  : 'text-text-muted hover:text-text hover:bg-white/40'
+                  }`}
+              >
+                1. Gün
+              </button>
+              <button
+                onClick={() => setActiveDay(2)}
+                className={`px-6 py-2.5 sm:px-8 sm:py-3 rounded-md font-heading font-semibold text-sm sm:text-base transition-all duration-300 ${activeDay === 2
+                  ? 'bg-accent text-white shadow-lg shadow-accent/30 scale-105'
+                  : 'text-text-muted hover:text-text hover:bg-white/40'
+                  }`}
+              >
+                2. Gün
+              </button>
             </motion.div>
-          </AnimatePresence>
-        </div>
+
+            {/* Schedule Grid Container */}
+            <div className="w-full max-w-5xl overflow-hidden rounded-2xl bg-[#f3f4f6]/45 backdrop-blur-3xl border border-white/60 shadow-xl">
+              {/* Header Row (Desktop) */}
+              <div className="hidden md:grid md:grid-cols-12 gap-4 px-6 py-4 bg-white/40 border-b border-white/40 font-heading font-bold text-xs sm:text-sm text-text-muted uppercase tracking-wider">
+                <div className="col-span-2 text-center flex items-center justify-center gap-2">
+                  <Clock className="w-4 h-4 text-accent" />
+                  <span>Saat</span>
+                </div>
+                <div className="col-span-4 flex items-center gap-2">
+                  <BookOpen className="w-4 h-4 text-accent" />
+                  <span>Konu</span>
+                </div>
+                <div className="col-span-3 flex items-center gap-2">
+                  <User className="w-4 h-4 text-accent" />
+                  <span>Konuşmacı</span>
+                </div>
+                <div className="col-span-3 text-center flex items-center justify-center gap-2">
+                  <Sparkles className="w-4 h-4 text-cta" />
+                  <span>Çekiliş Katılımı</span>
+                </div>
+              </div>
+
+              {/* Animated Schedule Items */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeDay}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.4 }}
+                  className="divide-y divide-white/40"
+                >
+                  {currentSchedule.map((item) => (
+                    <div
+                      key={item.id}
+                      className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 p-5 sm:p-6 hover:bg-white/40 transition-colors duration-200 items-center"
+                    >
+                      {/* Column 1: SAAT */}
+                      <div className="md:col-span-2 flex items-center justify-center">
+                        <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-accent/15 text-accent whitespace-nowrap">
+                          {item.time}
+                        </span>
+                      </div>
+
+                      {/* Column 2: KONU */}
+                      <div className="md:col-span-4 flex flex-col items-start">
+                        <h3 className="font-heading font-semibold text-text text-sm sm:text-base leading-snug">
+                          {item.topic}
+                        </h3>
+                      </div>
+
+                      {/* Column 3: Konuşmacı */}
+                      <div className="md:col-span-3 flex flex-col items-start">
+                        <span className="font-body font-medium text-xs sm:text-sm text-text">
+                          {item.speaker}
+                        </span>
+                        {item.speakerTitle && (
+                          <span className="font-body text-xs text-text-muted">
+                            {item.speakerTitle}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Column 4: Çekiliş Butonu */}
+                      <div className="md:col-span-3 flex justify-center items-center mt-2 md:mt-0">
+                        <button
+                          onClick={() => setSelectedRaffle(item)}
+                          className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-cta to-accent text-white font-body font-semibold text-xs leading-normal shadow-md shadow-cta/20 hover:shadow-lg hover:shadow-cta/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 text-center w-full md:w-auto"
+                        >
+                          <Gift className="w-4 h-4 shrink-0" />
+                          <span>Çekiliş Formu</span>
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="w-full max-w-2xl p-12 sm:p-12 mt-8 rounded-2xl bg-[#f3f4f6]/45 backdrop-blur-3xl border border-white/60 shadow-xl text-center flex flex-col items-center justify-center gap-2" style={{ margin: '1rem', padding: '1rem' }}
+          >
+            <div className="w-8 h-8 rounded-full bg-cta/10 flex items-center justify-center text-cta mt-4">
+              <Clock className="w-6 h-6" />
+            </div>
+            <p className="text-lg sm:text-xl font-heading font-semibold text-text leading-relaxed">
+              Yakın zamanda program akışına sitemiz ve Instagram hesabımızdan ulaşabilirsiniz.
+            </p>
+            <p className="text-base text-text-light italic sm:text-lg text-text-muted font-body">
+              Duyuruları kaçırmamak için takipte kalın.
+            </p>
+          </motion.div>
+        )}
       </div>
 
       {/* Raffle Form Modal */}

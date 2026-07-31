@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import SideDrawer from './components/SideDrawer';
 import Hero from './components/Hero';
@@ -15,6 +15,13 @@ import sectionBgVideo from './assets/section_bg.mp4';
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.77;
+    }
+  }, []);
 
   return (
     <div className="min-h-screen w-full bg-bg overflow-x-hidden">
@@ -26,6 +33,7 @@ export default function App() {
 
         <div className="w-full flex flex-col relative overflow-hidden">
           <video
+            ref={videoRef}
             autoPlay
             loop
             muted

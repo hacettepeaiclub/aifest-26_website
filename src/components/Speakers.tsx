@@ -1,5 +1,5 @@
-import { motion, useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { motion, useInView, useAnimationFrame, useMotionValue } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
 
 function LinkedInIcon({ className }: { className?: string }) {
   return (
@@ -44,7 +44,6 @@ const row2Speakers: Speaker[] = [
 ];
 
 function SpeakerCard({ speaker }: { speaker: Speaker }) {
-  const [flipped, setFlipped] = useState(false);
   const initials = speaker.name
     .split(' ')
     .filter(part => !['Dr.', 'Prof.'].includes(part))
@@ -55,9 +54,8 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
   return (
     <div
       className="flex-shrink-0 w-[220px] h-[220px] sm:w-[300px] sm:h-[300px] [perspective:1500px]"
-      onClick={() => setFlipped(!flipped)}
     >
-      <div className={`relative w-full h-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d] ${flipped ? '[transform:translateZ(-150px)_rotateX(90deg)]' : '[transform:translateZ(-150px)]'} group-hover:[transform:translateZ(-150px)_rotateX(90deg)]`}>
+      <div className="relative w-full h-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d] [transform:translateZ(-150px)] group-hover:[transform:translateZ(-150px)_rotateX(90deg)]">
 
         {/* FRONT FACE */}
         <div className="absolute inset-0 bg-[#f3f4f6]/45 backdrop-blur-3xl border border-white/60 rounded-3xl overflow-hidden shadow-xl flex flex-col items-center justify-center p-4 sm:p-6 [backface-visibility:hidden] [transform:rotateX(0deg)_translateZ(150px)]">
@@ -110,9 +108,43 @@ export default function Speakers() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-  // Combine speakers and duplicate for infinite marquee effect
   const allSpeakers = [...row1Speakers, ...row2Speakers];
-  const marqueeSpeakers = [...allSpeakers, ...allSpeakers];
+  // 3 copies to safely allow dragging left or right without seeing empty space
+  const marqueeSpeakers = [...allSpeakers, ...allSpeakers, ...allSpeakers];
+
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const x = useMotionValue(0);
+
+  // Initialize position to the middle copy so dragging right doesn't immediately hit the left edge
+  useEffect(() => {
+    if (trackRef.current) {
+      const singleSetWidth = trackRef.current.scrollWidth / 3;
+      x.set(-singleSetWidth);
+    }
+  }, [x]);
+
+  useAnimationFrame((t, delta) => {
+    let currentX = x.get();
+
+    // Only auto-scroll if not hovered and not dragging
+    if (!isHovered && !isDragging) {
+      currentX -= 0.065 * delta; // speed factor (approx 80px/s)
+    }
+
+    // Seamless wrap check
+    if (trackRef.current) {
+      const singleSetWidth = trackRef.current.scrollWidth / 3;
+      if (currentX <= -singleSetWidth * 2) {
+        currentX += singleSetWidth;
+      } else if (currentX >= 0) {
+        currentX -= singleSetWidth;
+      }
+    }
+
+    x.set(currentX);
+  });
 
   return (
     <section id="konusmacilar" className="py-12 sm:py-64 relative overflow-hidden w-full bg-transparent">
@@ -143,16 +175,25 @@ export default function Speakers() {
           <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-bg to-transparent z-10 pointer-events-none" />
 
           {/* Marquee track */}
-          <div
-            className="flex w-max animate-[marquee_250s_linear_infinite] gap-4 sm:gap-8 hover:[animation-play-state:paused] items-center"
-            style={{ marginBottom: "20px", marginTop: "10px" }}
+          <motion.div
+            ref={trackRef}
+            style={{ x, marginBottom: "20px", marginTop: "10px" }}
+            drag="x"
+            dragConstraints={{ left: -10000, right: 10000 }} // high limits, wrapping handles the rest
+            onDragStart={() => setIsDragging(true)}
+            onDragEnd={() => setIsDragging(false)}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onTouchStart={() => setIsHovered(true)}
+            onTouchEnd={() => setIsHovered(false)}
+            className="flex w-max gap-4 sm:gap-8 items-center cursor-grab active:cursor-grabbing"
           >
             {marqueeSpeakers.map((speaker, i) => (
-              <div key={`marquee-${speaker.name}-${i}`} className={`group transition-transform ${i % 2 === 0 ? 'mb-[120px] sm:mb-[250px]' : 'mt-[120px] sm:mt-[250px]'}`}>
+              <div key={`marquee-${speaker.name}-${i}`} className={`flex-shrink-0 group transition-transform ${i % 2 === 0 ? 'mb-[120px] sm:mb-[250px]' : 'mt-[120px] sm:mt-[250px]'}`}>
                 <SpeakerCard speaker={speaker} />
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

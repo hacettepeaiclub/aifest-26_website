@@ -206,7 +206,7 @@ export default function Footer() {
         <div className="border-t border-white/10">
           <div className="w-full px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-center text-center">
             <p className="text-xs text-white/40 font-body text-center" style={{ padding: '5px' }}>
-              © {new Date().getFullYear()} Hacettepe Üniversitesi Yapay Zeka Topluluğu  ·  AI Fest '26 | Tüm hakları saklıdır
+              © {new Date().getFullYear()} Hacettepe Üniversitesi Yapay Zeka Topluluğu · AI Fest | Tüm hakları saklıdır
             </p>
           </div>
         </div>

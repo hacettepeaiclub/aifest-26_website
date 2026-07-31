@@ -67,7 +67,7 @@ const platinSponsors: Sponsor[] = [
     instagram: 'https://www.instagram.com/magiclab_game/',
     youtube: 'https://www.youtube.com/@magiclabgames'
   },
-  { name: 'HAVELSAN', color: 'from-sky-400 to-blue-600' },
+  // { name: 'HAVELSAN', color: 'from-sky-400 to-blue-600' },
 ];
 
 const altinSponsors: Sponsor[] = [
@@ -81,37 +81,37 @@ const altinSponsors: Sponsor[] = [
     linkedin: 'https://www.linkedin.com/company/aselsan',
     x: 'https://x.com/aselsan'
   },
-  { name: 'Türk Telekom', color: 'from-blue-400 to-cyan-500' },
-  { name: 'Anadolu Grubu', color: 'from-red-400 to-orange-500' },
-  { name: 'TUSAŞ', color: 'from-emerald-400 to-green-600' },
+  // { name: 'Türk Telekom', color: 'from-blue-400 to-cyan-500' },
+  // { name: 'Anadolu Grubu', color: 'from-red-400 to-orange-500' },
+  // { name: 'TUSAŞ', color: 'from-emerald-400 to-green-600' },
 ];
 
 const gumusSponsors: Sponsor[] = [
-  { name: 'Massive Bio', color: 'from-teal-300 to-cyan-500' },
-  { name: 'Miuul', color: 'from-indigo-400 to-blue-500' },
-  { name: 'Digicertify', color: 'from-green-400 to-emerald-500' },
-  { name: 'Turkcell', color: 'from-yellow-400 to-amber-500' },
-  { name: 'İş Bankası', color: 'from-blue-500 to-indigo-600' },
-  { name: 'BtcTurk', color: 'from-sky-400 to-blue-500' },
+  // { name: 'Massive Bio', color: 'from-teal-300 to-cyan-500' },
+  // { name: 'Miuul', color: 'from-indigo-400 to-blue-500' },
+  // { name: 'Digicertify', color: 'from-green-400 to-emerald-500' },
+  // { name: 'Turkcell', color: 'from-yellow-400 to-amber-500' },
+  // { name: 'İş Bankası', color: 'from-blue-500 to-indigo-600' },
+  // { name: 'BtcTurk', color: 'from-sky-400 to-blue-500' },
 ];
 
 const fuayeSponsors: Sponsor[] = [
-  { name: 'Tat', color: 'from-red-400 to-red-600' },
-  { name: "Nuh'un Ankara Makarnası", color: 'from-yellow-400 to-orange-500' },
-  { name: 'Kanta Coffee Shop', color: 'from-amber-700 to-amber-900' },
-  { name: 'Cihan Kuruyemiş', color: 'from-green-500 to-lime-600' },
-  { name: 'Meşhur Selanik Aspava', color: 'from-red-500 to-orange-600' },
-  { name: 'Elmasu', color: 'from-pink-400 to-rose-500' },
-  { name: 'Salina', color: 'from-blue-300 to-cyan-400' },
-  { name: 'Campus Cafe', color: 'from-amber-500 to-yellow-600' },
+  // { name: 'Tat', color: 'from-red-400 to-red-600' },
+  // { name: "Nuh'un Ankara Makarnası", color: 'from-yellow-400 to-orange-500' },
+  // { name: 'Kanta Coffee Shop', color: 'from-amber-700 to-amber-900' },
+  // { name: 'Cihan Kuruyemiş', color: 'from-green-500 to-lime-600' },
+  // { name: 'Meşhur Selanik Aspava', color: 'from-red-500 to-orange-600' },
+  // { name: 'Elmasu', color: 'from-pink-400 to-rose-500' },
+  // { name: 'Salina', color: 'from-blue-300 to-cyan-400' },
+  // { name: 'Campus Cafe', color: 'from-amber-500 to-yellow-600' },
 ];
 
 const medyaSponsors: Sponsor[] = [
-  { name: 'Etkinkampüs', color: 'from-purple-400 to-violet-500' },
-  { name: 'Bilim Şenliği', color: 'from-blue-400 to-indigo-500' },
-  { name: 'Tekno Haber', color: 'from-cyan-400 to-teal-500' },
-  { name: 'AI Turkey', color: 'from-emerald-400 to-green-600' },
-  { name: 'StartupHR', color: 'from-orange-400 to-red-500' },
+  // { name: 'Etkinkampüs', color: 'from-purple-400 to-violet-500' },
+  // { name: 'Bilim Şenliği', color: 'from-blue-400 to-indigo-500' },
+  // { name: 'Tekno Haber', color: 'from-cyan-400 to-teal-500' },
+  // { name: 'AI Turkey', color: 'from-emerald-400 to-green-600' },
+  // { name: 'StartupHR', color: 'from-orange-400 to-red-500' },
 ];
 
 function SponsorPill({ sponsor }: { sponsor: Sponsor }) {
