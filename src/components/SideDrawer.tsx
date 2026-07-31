@@ -48,7 +48,7 @@ export default function SideDrawer({ isOpen, onClose }: SideDrawerProps) {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: '-100%', opacity: 0 }}
             transition={{ type: 'spring', damping: 28, stiffness: 280 }}
-            className="fixed top-0 left-0 z-50 h-full w-84 max-w-[85vw] bg-white/98 backdrop-blur-xl shadow-2xl shadow-deep/20 flex flex-col"
+            className="fixed top-0 left-0 z-50 h-full w-64 max-w-[85vw] bg-white/75 backdrop-blur-3xl shadow-2xl shadow-deep/20 flex flex-col"
           >
             <div>
               {/* Header */}
@@ -144,7 +144,7 @@ export default function SideDrawer({ isOpen, onClose }: SideDrawerProps) {
             </div>
 
             {/* Bottom CTA */}
-            <div className="flex justify-center" style={{ marginTop: '350px' }}>
+            <div className="flex justify-center" style={{ marginTop: '100px' }}>
               <a
                 href="#"
                 onClick={(e) => { e.preventDefault(); alert('Kayıtlar yakında başlayacak. Takipte kal!'); onClose(); }}

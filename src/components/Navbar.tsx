@@ -29,7 +29,7 @@ export default function Navbar({ onMenuToggle, isMenuOpen }: NavbarProps) {
       <div className="w-full px-4 sm:px-8 lg:px-16 xl:px-32">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Left: Hamburger + Logo */}
-          <div className="flex items-center gap-3 sm:gap-2.5">
+          <div className="flex items-center gap-1.5 sm:gap-2.5">
             <button
               id="hamburger-menu-btn"
               onClick={onMenuToggle}
@@ -66,8 +66,8 @@ export default function Navbar({ onMenuToggle, isMenuOpen }: NavbarProps) {
               </AnimatePresence>
             </button>
 
-            <a href="#hero" className="flex items-center gap-1 sm:gap-2">
-              <div className="w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center hover:scale-125 transition-transform">
+            <a href="#hero" className="flex items-center gap-[2.5px] sm:gap-[4.5px]">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center hover:scale-125 transition-transform">
                 <img
                   src={`${import.meta.env.BASE_URL}aiclub_logo.png`}
                   alt="Hacettepe Yapay Zeka Topluluğu"
@@ -75,7 +75,7 @@ export default function Navbar({ onMenuToggle, isMenuOpen }: NavbarProps) {
                   style={{ transform: 'scale(1.2)' }}
                 />
               </div>
-              <span className={`block font-heading font-bold text-[9px] sm:text-sm leading-tight sm:leading-normal transition-colors duration-300 ${scrolled ? 'text-black' : 'text-white'}`}>
+              <span className={`block font-heading font-bold text-[8px] sm:text-sm leading-tight sm:leading-normal transition-colors duration-300 ${scrolled ? 'text-black' : 'text-white'}`}>
                 Hacettepe Üniversitesi
                 <br />
                 Yapay Zeka Topluluğu
@@ -84,16 +84,16 @@ export default function Navbar({ onMenuToggle, isMenuOpen }: NavbarProps) {
           </div>
 
           {/* Right: CTA + Contact + Takvim */}
-          <div className="flex items-center gap-2 sm:gap-4">
+          <div className="flex items-center gap-1.5 sm:gap-4">
             <a
               href="#iletisim"
-              className={`inline-flex text-[11px] sm:text-base font-body font-semibold drop-shadow-sm hover:text-cta transition-colors duration-300 ${scrolled ? 'text-black' : 'text-white'}`}
+              className={`inline-flex text-[10px] sm:text-base font-body font-semibold drop-shadow-sm hover:text-cta transition-colors duration-300 ${scrolled ? 'text-black' : 'text-white'}`}
             >
               İletişim
             </a>
             <a
               href="#programakisi"
-              className={`inline-flex text-[11px] sm:text-base font-body font-semibold drop-shadow-sm hover:text-cta transition-colors duration-300 ${scrolled ? 'text-black' : 'text-white'}`}
+              className={`inline-flex text-[10px] sm:text-base font-body font-semibold drop-shadow-sm hover:text-cta transition-colors duration-300 ${scrolled ? 'text-black' : 'text-white'}`}
             >
               Takvim
             </a>
@@ -101,8 +101,8 @@ export default function Navbar({ onMenuToggle, isMenuOpen }: NavbarProps) {
               id="nav-register-btn"
               href="#"
               onClick={(e) => { e.preventDefault(); alert('Kayıtlar yakında başlayacak. Takipte kal!'); }}
-              className={`text-sm sm:text-lg font-body font-semibold drop-shadow-sm hover:text-cta transition-colors duration-300 ${scrolled ? 'text-black' : 'text-white'}`}
-              style={{ marginRight: '15px' }}
+              className={`text-[10px] sm:text-lg font-body font-semibold drop-shadow-sm hover:text-cta transition-colors duration-300 ${scrolled ? 'text-black' : 'text-white'}`}
+              style={{ marginRight: '10px' }}
             >
               Kayıt Ol
             </a>

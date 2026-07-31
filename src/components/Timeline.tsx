@@ -101,8 +101,8 @@ const Page = forwardRef<HTMLDivElement, { event: typeof timelineEvents[0]; numbe
               </div>
 
               {/* Description */}
-              <p className="text-xl sm:text-lg text-text-muted font-body mb-2 leading-relaxed"
-                style={{ marginRight: '30px', marginTop: '50px' }}>
+              <p className="text-2xl sm:text-xl text-text-light font-body mb-2 leading-relaxed"
+                style={{ marginRight: '30px', marginTop: '30px' }}>
                 {event.description}
               </p>
             </div>

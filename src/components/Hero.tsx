@@ -83,7 +83,7 @@ export default function Hero() {
             src={`${import.meta.env.BASE_URL}aifest_hero_logo.png`}
             alt="AI Fest Hero Logo"
             className="w-36 h-36 sm:w-64 sm:h-64 lg:w-[320px] lg:h-[320px] object-contain drop-shadow-2xl rounded-2xl"
-            animate={{ y: [0, 25, 0] }}
+            animate={{ y: [0, 20, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
           />
         </motion.div>
@@ -115,7 +115,7 @@ export default function Hero() {
         {/* Sub-text */}
         <motion.p
           initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          animate={{ y: 5, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
           className="mt-2 sm:mt-4 text-xs sm:text-sm text-white/41 font-body font-light"
           style={{ marginBottom: '-30px' }}
@@ -129,6 +129,7 @@ export default function Hero() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.55, ease: 'easeOut' }}
           className="w-full pointer-events-none"
+          style={{ marginTop: "-10px", marginBottom: "-30px" }}
         >
           <Countdown3D />
         </motion.div>

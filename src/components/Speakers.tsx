@@ -44,6 +44,7 @@ const row2Speakers: Speaker[] = [
 ];
 
 function SpeakerCard({ speaker }: { speaker: Speaker }) {
+  const [flipped, setFlipped] = useState(false);
   const initials = speaker.name
     .split(' ')
     .filter(part => !['Dr.', 'Prof.'].includes(part))
@@ -54,19 +55,22 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
   return (
     <div
       className="flex-shrink-0 w-[220px] h-[220px] sm:w-[300px] sm:h-[300px] [perspective:1500px]"
+      onMouseEnter={() => setFlipped(true)}
+      onMouseLeave={() => setFlipped(false)}
+      onClick={() => setFlipped(!flipped)}
     >
-      <div className="relative w-full h-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d] [transform:translateZ(-150px)] group-hover:[transform:translateZ(-150px)_rotateX(90deg)]">
+      <div className={`relative w-full h-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d] ${flipped ? '[transform:translateZ(-150px)_rotateX(90deg)]' : '[transform:translateZ(-150px)]'}`}>
 
         {/* FRONT FACE */}
         <div className="absolute inset-0 bg-[#f3f4f6]/45 backdrop-blur-3xl border border-white/60 rounded-3xl overflow-hidden shadow-xl flex flex-col items-center justify-center p-4 sm:p-6 [backface-visibility:hidden] [transform:rotateX(0deg)_translateZ(150px)]">
 
           {/* Round photo frame */}
-          <div className={`w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br ${speaker.color} flex items-center justify-center text-white font-heading font-bold text-xl sm:text-3xl shadow-lg ring-4 ring-white`}>
+          <div className={`w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br ${speaker.color} flex items-center justify-center text-white font-heading font-bold text-xl sm:text-3xl shadow-lg ring-4 ring-white`} style={{ marginBottom: "24px" }}>
             {initials}
           </div>
 
           {/* Name & title */}
-          <h3 className="font-heading font-bold text-text text-sm sm:text-lg text-center mt-3 sm:mt-4 leading-tight line-clamp-2 px-2">
+          <h3 className="font-heading font-bold text-text text-sm sm:text-lg text-center mt-3 sm:mt-4 leading-tight line-clamp-2 px-2" style={{ marginBottom: "8px" }}>
             {speaker.name}
           </h3>
           <p className="text-xs sm:text-sm text-cta font-body font-semibold text-center mt-1 sm:mt-1.5 leading-tight line-clamp-1 px-2">
@@ -83,7 +87,7 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
           <h3 className="font-heading font-bold text-text text-base sm:text-xl text-center mb-4 sm:mb-6">
             Bağlantı Kurun
           </h3>
-          <p className="text-xs sm:text-sm text-text-muted font-body text-center mb-4 sm:mb-6">
+          <p className="text-xs sm:text-sm text-text-muted font-body text-center mb-4 sm:mb-6" style={{ marginBottom: "12px" }}>
             {speaker.name} ile profesyonel ağınızı genişletin.
           </p>
 
