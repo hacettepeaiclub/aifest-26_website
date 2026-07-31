@@ -125,7 +125,7 @@ export default function Speakers() {
     }
   }, [x]);
 
-  useAnimationFrame((t, delta) => {
+  useAnimationFrame((_, delta) => {
     let currentX = x.get();
 
     // Only auto-scroll if not hovered and not dragging

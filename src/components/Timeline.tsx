@@ -130,7 +130,6 @@ Page.displayName = 'Page';
 /* ─── E-Book FlipBook Component ─── */
 function EBookFlip({ scale }: { scale: number }) {
   const flipBook = useRef<any>(null);
-  const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -215,7 +214,6 @@ function EBookFlip({ scale }: { scale: number }) {
             mobileScrollSupport={false} // Disabled because swipe directions are 90deg offset
             usePortrait={true}
             className="ebook-flipbook"
-            onFlip={(e: any) => setCurrentPage(e.data)}
           >
             {timelineEvents.map((event, i) => (
               <Page key={event.year} event={event} number={i + 1} />
