@@ -23,7 +23,12 @@ const partners = [
     logo: 'ieee_atilim.jpg',
     instagram: 'https://www.instagram.com/ieeeatilim'
   },
-  // { name: 'ACM Hacettepe', color: 'from-indigo-400 to-purple-500' },
+  {
+    name: 'Ankara Üniversitesi\nBÖTE Topluluğu',
+    color: 'from-indigo-400 to-purple-500',
+    logo: 'ankaraunibote_logo.jpg',
+    instagram: 'https://www.instagram.com/ankaraunibote'
+  },
   // { name: 'Yazılım Topluluğu', color: 'from-green-400 to-emerald-500' },
   // { name: 'Robotik Topluluğu', color: 'from-orange-400 to-red-500' },
   // { name: 'Siber Güvenlik Topluluğu', color: 'from-gray-500 to-slate-700' },

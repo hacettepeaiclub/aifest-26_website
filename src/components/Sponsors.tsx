@@ -60,12 +60,11 @@ interface Sponsor {
 
 const platinSponsors: Sponsor[] = [
   {
-    name: 'MagicLab',
+    name: 'DeePix',
     color: 'from-amber-300 to-amber-500',
-    logo: 'magiclab.jpg',
-    link: 'https://maglab.com.tr',
-    instagram: 'https://www.instagram.com/magiclab_game/',
-    youtube: 'https://www.youtube.com/@magiclabgames'
+    logo: 'deepixai_logo.jpeg',
+    link: 'https://deepixai.com',
+    linkedin: 'https://www.linkedin.com/company/deepixai',
   },
   // { name: 'HAVELSAN', color: 'from-sky-400 to-blue-600' },
 ];
@@ -132,9 +131,9 @@ function SponsorPill({ sponsor }: { sponsor: Sponsor }) {
       </div>
       <div className="flex flex-col items-center gap-1.5 mt-3 sm:mt-4">
         <span className="font-body font-semibold text-xs sm:text-sm text-text text-center w-full truncate px-2">{sponsor.name}</span>
-        
+
         {hasSocials ? (
-          <div className="flex items-center gap-1.5 mt-0.5 flex-wrap justify-center">
+          <div className="flex items-center gap-1.5 mt-0.5 flex-wrap justify-center" style={{ marginBottom: '20px' }}>
             {sponsor.link && (
               <a
                 href={sponsor.link}
@@ -242,10 +241,9 @@ function TierSection({ title, sponsors, tierColor, direction = 'left', speed = '
       transition={{ duration: 0.5, delay: 0.1 }}
       className="mb-[5px] w-full"
     >
-      <div className="flex items-center justify-center gap-3 mb-4 px-4 sm:px-8 lg:px-16 xl:px-32 w-full">
+      <div className="flex items-center justify-center gap-3 mb-4 px-4 sm:px-8 lg:px-16 xl:px-32 w-full" style={{ marginBottom: '20px' }}>
         <div className="h-px flex-1 bg-accent/15" />
-        <div className={`w-2.5 h-2.5 rounded-full ${tierColor}`} />
-        <h3 className="font-heading font-semibold text-text text-base sm:text-lg whitespace-nowrap">{title}</h3>
+        <h3 className={`font-heading font-bold text-base sm:text-3xl whitespace-nowrap ${tierColor}`}>{title}</h3>
         <div className="h-px flex-1 bg-accent/15" />
       </div>
       <MarqueeRow sponsors={sponsors} direction={direction} speed={speed} />
@@ -268,7 +266,7 @@ export default function Sponsors() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 sm:mb-16 px-4 sm:px-8 lg:px-16 xl:px-32 w-full"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-text" style={{ marginBottom: '20px' }}>
             <span className="bg-gradient-to-r from-accent to-cta bg-clip-text text-transparent">
               <br />Sponsorlar <br />
             </span>
@@ -279,7 +277,7 @@ export default function Sponsors() {
         <TierSection
           title="Platin Sponsor"
           sponsors={platinSponsors}
-          tierColor="bg-amber-400"
+          tierColor="bg-gradient-to-r from-cyan-600 via-indigo-600 to-sky-500 bg-clip-text text-transparent"
           direction="left"
           speed="60s"
         />
@@ -287,7 +285,7 @@ export default function Sponsors() {
         <TierSection
           title="Altın Sponsor"
           sponsors={altinSponsors}
-          tierColor="bg-yellow-500"
+          tierColor="bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 bg-clip-text text-transparent"
           direction="left"
           speed="75s"
         />
@@ -295,7 +293,7 @@ export default function Sponsors() {
         <TierSection
           title="Gümüş Sponsor"
           sponsors={gumusSponsors}
-          tierColor="bg-gray-400"
+          tierColor="bg-gradient-to-r from-gray-600 via-zinc-500 to-gray-600 bg-clip-text text-transparent"
           direction="left"
           speed="84s"
         />
@@ -307,7 +305,7 @@ export default function Sponsors() {
         <TierSection
           title="Fuaye Sponsorları"
           sponsors={fuayeSponsors}
-          tierColor="bg-cta"
+          tierColor="text-cta"
           direction="left"
           speed="96s"
         />
@@ -315,7 +313,7 @@ export default function Sponsors() {
         <TierSection
           title="Medya Tanıtım Sponsorları"
           sponsors={medyaSponsors}
-          tierColor="bg-badge"
+          tierColor="text-badge"
           direction="left"
           speed="72s"
         />
