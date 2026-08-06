@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Info, Users, Award, Handshake, Calendar, Clock, Archive, ChevronDown, X } from 'lucide-react';
-import { useState } from 'react';
+import { Home, Info, Users, Award, Handshake, Calendar, Clock, X } from 'lucide-react';
+
 
 interface SideDrawerProps {
   isOpen: boolean;
@@ -17,16 +17,10 @@ const menuItems = [
   { icon: Calendar, label: "AI Fest Yolculuğu", href: '#tarihce' },
 ];
 
-const archiveItems = [
-  { label: "AI Fest '24", year: '2024' },
-  { label: "AI Fest '23", year: '2023' },
-  { label: "AI Fest '21", year: '2021' },
-  { label: "AI Fest '20", year: '2020' },
-  { label: "AI Fest '19", year: '2019' },
-];
+
 
 export default function SideDrawer({ isOpen, onClose }: SideDrawerProps) {
-  const [archiveOpen, setArchiveOpen] = useState(false);
+
 
   return (
     <AnimatePresence>
@@ -93,53 +87,7 @@ export default function SideDrawer({ isOpen, onClose }: SideDrawerProps) {
                   </motion.a>
                 ))}
 
-                {/* Archive dropdown */}
-                <motion.div
-                  initial={{ x: -40, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.35, type: 'spring', stiffness: 200 }}
-                >
-                  <button
-                    onClick={() => setArchiveOpen(!archiveOpen)}
-                    className="flex items-center justify-between w-full px-4 py-3.5 rounded-xl text-text hover:bg-cta/10 hover:text-cta transition-all duration-200 group"
-                    style={{ marginLeft: '-3px' }}
-                  >
-                    <div className="flex items-center gap-4.5">
-                      <Archive className="w-5 h-5 text-text-muted group-hover:text-cta transition-colors translate-x-[6px]" />
-                      <span className="font-body font-semibold text-base">Arşiv</span>
-                    </div>
-                    <motion.div animate={{ rotate: archiveOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
-                      <ChevronDown className="w-4 h-4 text-text-muted" />
-                    </motion.div>
-                  </button>
 
-                  <AnimatePresence>
-                    {archiveOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="overflow-hidden ml-8 mt-2 space-y-1.5"
-                      >
-                        {archiveItems.map((item, i) => (
-                          <motion.a
-                            key={item.year}
-                            href={`#archive-${item.year}`}
-                            onClick={onClose}
-                            initial={{ x: -20, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ delay: i * 0.04 }}
-                            className="flex items-center gap-2.5 px-4 py-2.5 rounded-lg text-text-muted hover:text-cta hover:bg-cta/5 transition-all duration-200 text-sm font-body font-medium"
-                          >
-                            <span className="w-1.5 h-1.5 rounded-full bg-accent/40" />
-                            {item.label}
-                          </motion.a>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
               </nav>
             </div>
 

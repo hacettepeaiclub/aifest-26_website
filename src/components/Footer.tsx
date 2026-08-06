@@ -115,18 +115,18 @@ export default function Footer() {
               transition={{ duration: 0.6 }}
               className="md:col-span-1 flex flex-col items-center text-center sm:items-start sm:text-left"
             >
-              <div className="flex flex-col sm:flex-row items-center gap-3 mb-4 text-center sm:text-left">
+              <div className="flex flex-col sm:flex-row items-center gap-3 mb-4 text-center sm:text-left" >
                 <img
                   src={`${import.meta.env.BASE_URL}aifest_hero_logo.png`}
                   alt="AI Fest"
-                  className="w-24 h-24 object-contain"
+                  className="w-24 h-24 object-contain" style={{ marginTop: '-18px' }}
                 />
                 <div className="text-center sm:text-left">
-                  <h3 className="font-headline font-bold text-white text-xl text-center sm:text-left">AI Fest '26</h3>
+                  <h3 className="font-headline font-bold text-white text-xl text-center sm:text-left" style={{ marginTop: '-18px' }}>AI Fest '26</h3>
                   <p className="text-xs text-white/50 font-body text-center sm:text-left">Hacettepe Üniversitesi <br />Yapay Zeka Topluluğu</p>
                 </div>
               </div>
-              <p className="text-sm text-white/60 font-body leading-relaxed max-w-xs text-center sm:text-left">
+              <p className="text-sm text-white/60 font-body leading-relaxed max-w-xs text-center sm:text-left" style={{ marginTop: '-3px' }}>
                 2018'den bugüne yapay zekâ dünyasına adım atmak isteyen herkesi bir araya getiriyoruz.
               </p>
             </motion.div>
@@ -169,14 +169,14 @@ export default function Footer() {
                   href="https://hacettepeaiclub.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center sm:justify-start gap-2 text-sm text-white/60 hover:text-cta font-body transition-colors"
+                  className="flex items-center justify-center sm:justify-start gap-2 text-sm text-white/60 hover:text-cta font-body transition-colors" style={{ marginBottom: '1px' }}
                 >
                   <Globe className="w-4 h-4" />
                   hacettepeaiclub.com
                 </a>
                 <a
                   href="mailto:contact@hacettepeaiclub.com"
-                  className="flex items-center justify-center sm:justify-start gap-2 text-sm text-white/60 hover:text-cta font-body transition-colors"
+                  className="flex items-center justify-center sm:justify-start gap-2 text-sm text-white/60 hover:text-cta font-body transition-colors" style={{ marginBottom: '5px' }}
                 >
                   <Mail className="w-4 h-4" />
                   contact@hacettepeaiclub.com
@@ -192,7 +192,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className={`p-2.5 rounded-xl bg-white/5 text-white/50 ${social.color} hover:bg-white/10 transition-all duration-300 hover:scale-110`}
+                    className={`p-2.5 rounded-xl bg-white/5 text-white/50 ${social.color} hover:bg-white/10 transition-all duration-300 hover:scale-110`} style={{ marginBottom: '5px' }}
                   >
                     <social.icon className="w-4 h-4" />
                   </a>
@@ -203,10 +203,10 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10">
+        <div className="border-t border-white/33">
           <div className="w-full px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-center text-center">
-            <p className="text-xs text-white/40 font-body text-center" style={{ padding: '5px' }}>
-              © {new Date().getFullYear()} Hacettepe Üniversitesi Yapay Zeka Topluluğu · AI Fest | Tüm hakları saklıdır
+            <p className="text-xs text-white/40 font-body text-center" style={{ marginTop: '5px', marginBottom: '7px' }}>
+              © {new Date().getFullYear()} Hacettepe Üniversitesi Yapay Zeka Topluluğu · AI Fest | Tüm hakları saklıdır.
             </p>
           </div>
         </div>

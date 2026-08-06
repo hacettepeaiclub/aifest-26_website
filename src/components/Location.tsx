@@ -61,7 +61,7 @@ export default function Location() {
           >
             {/* Centered venue name & address */}
             <div className="flex flex-col items-center text-center max-w-2xl">
-              <div className="p-3 rounded-2xl bg-deep/10 mb-3">
+              <div className="">
                 <MapPin className="w-8 h-8 text-deep" />
               </div>
               <h3 className="font-heading font-bold text-text text-xl sm:text-2xl">{venueName}</h3>
@@ -71,16 +71,16 @@ export default function Location() {
             </div>
 
             {/* Horizontal features list */}
-            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-4 pt-5 border-t border-accent/10 w-full">
-              <div className="flex items-center gap-2.5 text-sm sm:text-base text-text-muted font-body">
+            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-10 pt-5 border-t border-accent/10 w-full">
+              <div className="flex items-center gap-1 text-sm sm:text-base text-text-muted font-body">
                 <span className="w-2 h-2 rounded-full bg-cta flex-shrink-0" />
                 1000 kişi kapasiteli konferans salonu
               </div>
-              <div className="flex items-center gap-2.5 text-sm sm:text-base text-text-muted font-body">
+              <div className="flex items-center gap-1 text-sm sm:text-base text-text-muted font-body">
                 <span className="w-2 h-2 rounded-full bg-accent flex-shrink-0" />
                 Geniş fuaye alanı
               </div>
-              <div className="flex items-center gap-2.5 text-sm sm:text-base text-text-muted font-body">
+              <div className="flex items-center gap-1 text-sm sm:text-base text-text-muted font-body">
                 <span className="w-2 h-2 rounded-full bg-badge flex-shrink-0" />
                 Ücretsiz otopark imkânı
               </div>
@@ -99,10 +99,10 @@ export default function Location() {
               href={googleMapsDirectionsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-center gap-3 w-full p-4 sm:p-5 rounded-2xl bg-gray-200/90 hover:bg-gray-300 text-text font-body font-bold text-base sm:text-lg border border-gray-300/80 shadow-sm transition-all duration-300 hover:shadow-md"
+              className="group flex items-center justify-center gap-3 w-full p-4 sm:p-5 rounded-2xl bg-gray-200/90 hover:bg-gray-300 active:bg-gray-300 text-text font-body font-bold text-base sm:text-lg border border-gray-300/80 shadow-sm transition-all duration-300 hover:shadow-md active:shadow-md active:scale-95"
               style={{ marginBottom: '5px' }}
             >
-              <Navigation className="w-5 h-5 sm:w-6 sm:h-6 text-accent group-hover:rotate-45 transition-transform duration-300" />
+              <Navigation className="w-5 h-5 sm:w-6 sm:h-6 text-accent group-hover:rotate-45 group-active:rotate-45 transition-transform duration-300" />
               <span>Yol Tarifi Al</span>
             </a>
           </motion.div>

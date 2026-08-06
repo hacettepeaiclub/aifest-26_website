@@ -96,13 +96,13 @@ const Page = forwardRef<HTMLDivElement, { event: typeof timelineEvents[0]; numbe
             {/* Right Side: Info Block */}
             <div className="flex flex-col items-start justify-center text-left flex-1 max-w-lg">
               {/* Year at Top Left */}
-              <div className="text-5xl sm:text-6xl font-black mb-6 tracking-tighter drop-shadow-sm" style={{ color: event.colorHex, marginTop: '0px' }}>
+              <div className="text-5xl sm:text-6xl font-black mb-5 tracking-tighter drop-shadow-sm" style={{ color: event.colorHex, marginTop: '4px', marginLeft: '-41px' }}>
                 {event.year}
               </div>
 
               {/* Description */}
-              <p className="text-2xl sm:text-xl text-text-light font-body mb-2 leading-relaxed"
-                style={{ marginRight: '30px', marginTop: '30px' }}>
+              <p className="text-3xl sm:text-xl text-text-light font-body mb-2 leading-relaxed"
+                style={{ marginRight: '25px', marginTop: '10px', marginLeft: '-41px' }}>
                 {event.description}
               </p>
             </div>
